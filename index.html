@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chronicle Atlas — Historical Events by Year</title>
+<title>Chronicle Atlas — The Atlantic Age, 1770–1860</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,6 @@
   :root{
     --ink:#0b1420;
     --panel:#0f1b28;
-    --panel-2:#13233333;
     --paper:#e9e0c9;
     --paper-dim:#a9a08a;
     --brass:#c9a227;
@@ -37,41 +36,24 @@
     overflow:hidden;
   }
 
-  #map{
-    position:absolute;
-    inset:0;
-    background:var(--ink);
-  }
+  #map{ position:absolute; inset:0; background:var(--ink); }
 
   /* ---------- Header ---------- */
   .topbar{
-    position:absolute;
-    top:0; left:0; right:0;
-    z-index:900;
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
+    position:absolute; top:0; left:0; right:0; z-index:900;
+    display:flex; align-items:baseline; justify-content:space-between;
     padding:22px 28px 0 28px;
     pointer-events:none;
   }
-  .brand{
-    pointer-events:auto;
-  }
+  .brand{ pointer-events:auto; }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:var(--brass);
-    margin:0 0 4px 0;
+    font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--brass); margin:0 0 4px 0;
   }
   .brand h1{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:26px;
-    margin:0;
-    color:var(--paper);
-    letter-spacing:.01em;
+    font-family:'Fraunces', serif; font-weight:600; font-size:26px; margin:0;
+    color:var(--paper); letter-spacing:.01em;
     text-shadow:0 2px 12px rgba(0,0,0,.5);
   }
 
@@ -86,204 +68,103 @@
     font-size:11px;
   }
   .legend-title{
-    color:var(--paper-dim);
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    font-size:10px;
-    margin-bottom:8px;
+    color:var(--paper-dim); text-transform:uppercase; letter-spacing:.14em;
+    font-size:10px; margin-bottom:8px;
   }
   .legend-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:5px 0;
-    cursor:pointer;
-    user-select:none;
-    opacity:1;
-    transition:opacity .15s ease;
+    display:flex; align-items:center; gap:8px; margin:5px 0;
+    cursor:pointer; user-select:none; opacity:1; transition:opacity .15s ease;
   }
   .legend-row.off{ opacity:.32; }
   .dot{
-    width:9px; height:9px;
-    border-radius:50%;
-    flex:0 0 auto;
+    width:9px; height:9px; border-radius:50%; flex:0 0 auto;
     box-shadow:0 0 0 1px rgba(0,0,0,.4);
   }
   .legend-row span.label{ color:var(--paper); font-size:11.5px; letter-spacing:.01em;}
 
-  /* ---------- Event card (info panel) ---------- */
-  .infocard{
-    position:absolute;
-    top:22px;
-    right:28px;
-    z-index:900;
-    width:280px;
-    pointer-events:none;
-  }
-
   /* ---------- Bottom instrument (timeline) ---------- */
   .instrument{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    z-index:900;
-    padding:0 0 0 0;
+    position:absolute; left:0; right:0; bottom:0; z-index:900;
     background:linear-gradient(180deg, rgba(11,20,32,0) 0%, rgba(11,20,32,0.92) 26%, rgba(11,20,32,0.98) 100%);
     padding-top:60px;
   }
-  .instrument-inner{
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 28px 22px 28px;
-  }
+  .instrument-inner{ max-width:1180px; margin:0 auto; padding:0 28px 22px 28px; }
 
-  .year-readout{
-    display:flex;
-    align-items:flex-end;
-    gap:18px;
-    margin-bottom:10px;
-  }
+  .year-readout{ display:flex; align-items:flex-end; gap:18px; margin-bottom:10px; }
   .year-readout .year{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:64px;
-    line-height:1;
-    color:var(--brass);
-    letter-spacing:.01em;
+    font-family:'Fraunces', serif; font-weight:700; font-size:64px; line-height:1;
+    color:var(--brass); letter-spacing:.01em;
     text-shadow:0 2px 20px rgba(201,162,39,0.25);
     min-width:190px;
     font-variant-numeric: tabular-nums;
   }
-  .year-meta{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--paper-dim);
-    padding-bottom:12px;
-  }
+  .year-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--paper-dim); padding-bottom:12px; }
   .year-meta strong{ color:var(--paper); font-weight:600;}
 
-  .controls-row{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
+  .controls-row{ display:flex; align-items:center; gap:14px; }
 
   .playbtn{
-    flex:0 0 auto;
-    width:42px;height:42px;
-    border-radius:50%;
+    flex:0 0 auto; width:42px;height:42px; border-radius:50%;
     border:1px solid var(--brass-dim);
     background:rgba(201,162,39,0.08);
-    color:var(--brass);
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    font-size:15px;
+    color:var(--brass); cursor:pointer;
+    display:flex;align-items:center;justify-content:center; font-size:15px;
     transition:background .15s ease, transform .1s ease;
   }
   .playbtn:hover{ background:rgba(201,162,39,0.18); }
   .playbtn:active{ transform:scale(0.94); }
 
-  .slider-wrap{
-    flex:1 1 auto;
-    position:relative;
-    padding-top:6px;
-  }
+  .slider-wrap{ flex:1 1 auto; position:relative; padding-top:6px; }
 
   .ticks{
-    display:flex;
-    justify-content:space-between;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:9.5px;
-    color:var(--paper-dim);
-    padding:0 2px;
-    margin-bottom:4px;
-    letter-spacing:.02em;
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:var(--paper-dim);
+    padding:0 2px; margin-bottom:4px; letter-spacing:.02em;
   }
 
   input[type=range]{
-    -webkit-appearance:none;
-    appearance:none;
-    width:100%;
-    height:4px;
-    border-radius:2px;
+    -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:2px;
     background:linear-gradient(90deg, var(--brass-dim), var(--line));
-    outline:none;
-    cursor:pointer;
+    outline:none; cursor:pointer;
   }
   input[type=range]::-webkit-slider-thumb{
-    -webkit-appearance:none;
-    width:18px; height:18px;
-    border-radius:50%;
+    -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #f0d878, var(--brass) 60%, var(--brass-dim) 100%);
     border:2px solid var(--ink);
     box-shadow:0 0 0 1px var(--brass), 0 2px 8px rgba(0,0,0,.5);
-    cursor:pointer;
-    margin-top:-7px;
+    cursor:pointer; margin-top:-7px;
   }
   input[type=range]::-moz-range-thumb{
-    width:16px; height:16px;
-    border-radius:50%;
+    width:16px; height:16px; border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #f0d878, var(--brass) 60%, var(--brass-dim) 100%);
-    border:2px solid var(--ink);
-    cursor:pointer;
+    border:2px solid var(--ink); cursor:pointer;
   }
-  input[type=range]::-moz-range-track{
-    height:4px; border-radius:2px;
-    background:var(--line);
-  }
+  input[type=range]::-moz-range-track{ height:4px; border-radius:2px; background:var(--line); }
 
   .speed-select{
-    flex:0 0 auto;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    background:transparent;
-    color:var(--paper-dim);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:9px 8px;
-    cursor:pointer;
+    flex:0 0 auto; font-family:'IBM Plex Mono', monospace; font-size:11px;
+    background:transparent; color:var(--paper-dim);
+    border:1px solid var(--line); border-radius:6px; padding:9px 8px; cursor:pointer;
   }
   .speed-select:hover{ color:var(--paper); border-color:var(--brass-dim); }
 
   /* ---------- Popup styling ---------- */
   .leaflet-popup-content-wrapper{
-    background:var(--panel);
-    color:var(--paper);
-    border:1px solid var(--line);
-    border-radius:8px;
+    background:var(--panel); color:var(--paper);
+    border:1px solid var(--line); border-radius:8px;
     box-shadow:0 8px 30px rgba(0,0,0,.5);
   }
   .leaflet-popup-tip{ background:var(--panel); border:1px solid var(--line);}
   .leaflet-popup-content{ margin:14px 16px; font-family:'Source Sans 3', sans-serif; }
   .pop-cat{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    margin-bottom:5px;
+    font-family:'IBM Plex Mono', monospace; font-size:10px;
+    text-transform:uppercase; letter-spacing:.14em; margin-bottom:5px;
   }
-  .pop-year{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--brass);
-    font-size:12px;
-    margin-bottom:4px;
-  }
-  .pop-title{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:17px;
-    margin:0 0 6px 0;
-    color:var(--paper);
-  }
+  .pop-year{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:12px; margin-bottom:4px; }
+  .pop-title{ font-family:'Fraunces', serif; font-weight:600; font-size:17px; margin:0 0 6px 0; color:var(--paper); }
   .pop-desc{ font-size:13px; line-height:1.5; color:#cfc6ab; }
   .leaflet-popup-close-button{ color:var(--paper-dim) !important; }
   .leaflet-container a.leaflet-popup-close-button:hover{ color:var(--paper) !important; }
-
-  .empty-note{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px;
-    color:var(--paper-dim);
-  }
-  .empty-note strong{ color:var(--brass); }
 
   ::-webkit-scrollbar{ width:8px; }
   ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
@@ -293,7 +174,6 @@
     .legend{ display:none; }
     .topbar{ padding:16px 16px 0 16px; }
     .instrument-inner{ padding:0 16px 16px 16px; }
-    .infocard{ display:none; }
   }
 </style>
 </head>
@@ -303,8 +183,8 @@
 
 <div class="topbar">
   <div class="brand">
-    <p class="eyebrow">An interactive gazetteer</p>
-    <h1>Chronicle Atlas</h1>
+    <p class="eyebrow">Revolutions &amp; reckonings</p>
+    <h1>Chronicle Atlas — The Atlantic Age</h1>
   </div>
   <div class="legend" id="legend"></div>
 </div>
@@ -312,19 +192,19 @@
 <div class="instrument">
   <div class="instrument-inner">
     <div class="year-readout">
-      <div class="year" id="yearDisplay">1000</div>
+      <div class="year" id="yearDisplay">1776</div>
       <div class="year-meta" id="yearMeta">Drag the dial or press play to travel through time.</div>
     </div>
     <div class="controls-row">
       <button class="playbtn" id="playBtn" title="Play / pause" aria-label="Play or pause timeline">&#9654;</button>
       <div class="slider-wrap">
         <div class="ticks" id="ticks"></div>
-        <input type="range" id="yearSlider" min="1000" max="2025" step="1" value="1000">
+        <input type="range" id="yearSlider" min="1770" max="1860" step="1" value="1776">
       </div>
       <select class="speed-select" id="speedSelect" title="Playback speed">
-        <option value="600">Slow</option>
-        <option value="300" selected>Normal</option>
-        <option value="120">Fast</option>
+        <option value="700">Slow</option>
+        <option value="350" selected>Normal</option>
+        <option value="140">Fast</option>
       </select>
     </div>
   </div>
@@ -333,59 +213,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 /* =========================================================
-   1. EVENT DATA
-   Replace/extend this array with your own events.
+   1. EVENT DATA — loaded from an external JSON file (events.json)
+   Must sit next to this HTML file (same folder) when hosted.
+   Each entry: { year, lat, lng, title, category, desc }
    category options: conflict, discovery, science, politics, culture, disaster
    ========================================================= */
-const EVENTS = [
-  { year: 1066, lat: 50.91, lng: 0.48, title: "Battle of Hastings", category: "conflict", desc: "Norman forces defeated the English army, reshaping the ruling class of England." },
-  { year: 1088, lat: 44.49, lng: 11.34, title: "University of Bologna founded", category: "culture", desc: "Widely regarded as the oldest continuously operating university in the world." },
-  { year: 1206, lat: 47.92, lng: 106.92, title: "Mongol Empire proclaimed", category: "politics", desc: "Temujin was proclaimed Genghis Khan, unifying the Mongol tribes." },
-  { year: 1215, lat: 51.44, lng: -0.56, title: "Magna Carta sealed", category: "politics", desc: "English barons forced King John to accept limits on royal power at Runnymede." },
-  { year: 1347, lat: 45.44, lng: 12.33, title: "Black Death reaches Europe", category: "disaster", desc: "Plague arrived via trading ships, beginning a pandemic that killed a huge share of Europe's population." },
-  { year: 1440, lat: 49.99, lng: 8.27, title: "Gutenberg's printing press", category: "science", desc: "Johannes Gutenberg developed movable-type printing in Mainz, transforming the spread of knowledge." },
-  { year: 1453, lat: 41.01, lng: 28.98, title: "Fall of Constantinople", category: "conflict", desc: "Ottoman forces captured the Byzantine capital, ending the Byzantine Empire." },
-  { year: 1492, lat: 24.0, lng: -74.5, title: "Columbus reaches the Americas", category: "discovery", desc: "A Spanish-backed expedition made landfall in the Caribbean, beginning sustained European contact with the Americas." },
-  { year: 1517, lat: 51.86, lng: 12.65, title: "Ninety-Five Theses", category: "culture", desc: "Martin Luther's theses at Wittenberg sparked the Protestant Reformation." },
-  { year: 1521, lat: 19.43, lng: -99.13, title: "Fall of Tenochtitlan", category: "conflict", desc: "Spanish forces and local allies conquered the Aztec capital." },
-  { year: 1543, lat: 50.06, lng: 19.94, title: "Copernicus publishes heliocentrism", category: "science", desc: "Nicolaus Copernicus's treatise proposed the Sun, not Earth, as the center of the cosmos." },
-  { year: 1588, lat: 50.5, lng: -1.5, title: "Defeat of the Spanish Armada", category: "conflict", desc: "English forces and storms scattered the Spanish invasion fleet." },
-  { year: 1609, lat: 45.44, lng: 12.33, title: "Galileo's telescope observations", category: "science", desc: "Galileo Galilei turned an improved telescope to the sky, observing craters, moons, and stars never seen before." },
-  { year: 1687, lat: 52.2, lng: 0.12, title: "Newton's Principia published", category: "science", desc: "Isaac Newton laid out the laws of motion and universal gravitation." },
-  { year: 1756, lat: 51.05, lng: 13.74, title: "Seven Years' War begins", category: "conflict", desc: "A global conflict among major European powers erupted, spanning multiple continents." },
-  { year: 1776, lat: 39.95, lng: -75.16, title: "US Declaration of Independence", category: "politics", desc: "Thirteen American colonies declared independence from Britain in Philadelphia." },
-  { year: 1789, lat: 48.86, lng: 2.35, title: "Storming of the Bastille", category: "politics", desc: "Parisians stormed the fortress-prison, a flashpoint that ignited the French Revolution." },
-  { year: 1804, lat: 48.85, lng: 2.35, title: "Napoleon crowned Emperor", category: "politics", desc: "Napoleon Bonaparte crowned himself Emperor of the French at Notre-Dame." },
-  { year: 1815, lat: 50.68, lng: 4.4, title: "Battle of Waterloo", category: "conflict", desc: "Napoleon's final defeat ended his rule and reshaped the map of Europe." },
-  { year: 1859, lat: 51.5, lng: -0.13, title: "On the Origin of Species", category: "science", desc: "Charles Darwin published his theory of evolution by natural selection." },
-  { year: 1865, lat: 38.9, lng: -77.03, title: "US Civil War ends", category: "conflict", desc: "Confederate surrender at Appomattox effectively ended the American Civil War." },
-  { year: 1869, lat: 30.6, lng: 32.3, title: "Suez Canal opens", category: "discovery", desc: "The canal opened a direct sea route between the Mediterranean and the Red Sea." },
-  { year: 1876, lat: 42.36, lng: -71.06, title: "Telephone patented", category: "science", desc: "Alexander Graham Bell was granted a patent for a working telephone." },
-  { year: 1885, lat: 51.51, lng: -0.13, title: "Berlin Conference concludes", category: "politics", desc: "European powers formalized the partition of Africa among themselves." },
-  { year: 1903, lat: 36.02, lng: -75.67, title: "First powered flight", category: "science", desc: "The Wright brothers achieved the first sustained, controlled flight of a powered aircraft at Kitty Hawk." },
-  { year: 1912, lat: 41.73, lng: -49.95, title: "Sinking of the Titanic", category: "disaster", desc: "The ocean liner struck an iceberg and sank on its maiden voyage in the North Atlantic." },
-  { year: 1914, lat: 44.87, lng: 18.42, title: "Assassination in Sarajevo", category: "conflict", desc: "The killing of Archduke Franz Ferdinand set off the chain of events leading to World War I." },
-  { year: 1917, lat: 59.93, lng: 30.34, title: "Russian Revolution", category: "politics", desc: "Bolshevik forces seized power in Petrograd, toppling the provisional government." },
-  { year: 1918, lat: 48.2, lng: 16.37, title: "Spanish flu pandemic peaks", category: "disaster", desc: "A devastating influenza pandemic spread worldwide, killing tens of millions." },
-  { year: 1928, lat: 51.52, lng: -0.1, title: "Discovery of penicillin", category: "science", desc: "Alexander Fleming noticed a mould killing bacteria in his London laboratory, leading to the first antibiotic." },
-  { year: 1929, lat: 40.71, lng: -74.01, title: "Wall Street Crash", category: "disaster", desc: "A catastrophic stock market crash in New York triggered the Great Depression." },
-  { year: 1939, lat: 52.23, lng: 21.01, title: "Invasion of Poland", category: "conflict", desc: "Germany's invasion of Poland marked the start of the Second World War in Europe." },
-  { year: 1945, lat: 34.39, lng: 132.45, title: "Atomic bombing of Hiroshima", category: "conflict", desc: "The United States dropped an atomic bomb on Hiroshima, hastening the end of World War II." },
-  { year: 1947, lat: 28.61, lng: 77.21, title: "Indian Independence", category: "politics", desc: "India gained independence from British rule and was partitioned into India and Pakistan." },
-  { year: 1955, lat: 32.38, lng: -86.3, title: "Montgomery Bus Boycott begins", category: "politics", desc: "Rosa Parks's arrest sparked a year-long boycott that became a landmark of the US civil rights movement." },
-  { year: 1957, lat: 45.97, lng: 63.31, title: "Sputnik launched", category: "science", desc: "The Soviet Union launched the first artificial satellite, opening the Space Age." },
-  { year: 1961, lat: 45.97, lng: 63.31, title: "First human spaceflight", category: "science", desc: "Yuri Gagarin became the first human to orbit the Earth aboard Vostok 1." },
-  { year: 1963, lat: 38.89, lng: -77.05, title: "March on Washington", category: "politics", desc: "A massive civil rights demonstration culminated in a landmark speech at the Lincoln Memorial." },
-  { year: 1969, lat: 0.67, lng: 23.47, title: "Apollo 11 Moon landing", category: "discovery", desc: "Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon." },
-  { year: 1986, lat: 51.39, lng: 30.1, title: "Chernobyl disaster", category: "disaster", desc: "A reactor explosion at the Chernobyl nuclear plant caused the worst nuclear accident in history." },
-  { year: 1989, lat: 52.52, lng: 13.4, title: "Fall of the Berlin Wall", category: "politics", desc: "East Germans breached the Berlin Wall, a defining moment in the end of the Cold War." },
-  { year: 1991, lat: 55.75, lng: 37.62, title: "Dissolution of the Soviet Union", category: "politics", desc: "The USSR formally dissolved into fifteen independent states." },
-  { year: 2001, lat: 40.71, lng: -74.01, title: "September 11 attacks", category: "conflict", desc: "Coordinated terrorist attacks struck New York and Washington, reshaping global security policy." },
-  { year: 2004, lat: 3.32, lng: 95.85, title: "Indian Ocean tsunami", category: "disaster", desc: "A massive undersea earthquake triggered a tsunami that devastated coastlines across South and Southeast Asia." },
-  { year: 2008, lat: 40.71, lng: -74.01, title: "Global financial crisis", category: "disaster", desc: "The collapse of major financial institutions triggered a worldwide economic downturn." },
-  { year: 2012, lat: 46.2, lng: 6.15, title: "Higgs boson confirmed", category: "science", desc: "Physicists at CERN announced the discovery of the Higgs boson, confirming a decades-old prediction." },
-  { year: 2019, lat: 30.58, lng: 114.3, title: "COVID-19 emerges", category: "disaster", desc: "A novel coronavirus identified in Wuhan went on to cause a global pandemic." },
-];
+let EVENTS = [];
+
+async function loadEvents(){
+  try {
+    const res = await fetch('events.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    EVENTS = await res.json();
+  } catch (err) {
+    console.error('Could not load events.json:', err);
+    yearMeta.textContent = 'Could not load events.json — check that it is in the same folder as this page and that you are viewing it over http(s), not a local file:// path.';
+    EVENTS = [];
+  }
+}
 
 const CATEGORY_META = {
   conflict:  { label: "Conflict",   color: "#a63d2f" },
@@ -397,13 +242,13 @@ const CATEGORY_META = {
 };
 
 /* =========================================================
-   2. MAP SETUP
+   2. MAP SETUP — centered on the Atlantic, framing NA + Europe
    ========================================================= */
 const map = L.map('map', {
   worldCopyJump: true,
   zoomControl: false,
   minZoom: 2,
-}).setView([25, 15], 3);
+}).setView([38, -35], 3);
 
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
@@ -446,7 +291,6 @@ function buildMarkers(){
     markers.push(marker);
   });
 }
-buildMarkers();
 
 function refreshMarkers(){
   const year = parseInt(slider.value, 10);
@@ -466,7 +310,6 @@ function updateMeta(year, count){
     yearMeta.innerHTML = `<strong>${count}</strong> event${count>1?'s':''} on the map this year.`;
     return;
   }
-  // find nearest prior/next event year for a helpful hint
   const years = [...new Set(EVENTS.map(e=>e.year))].sort((a,b)=>a-b);
   const prev = [...years].reverse().find(y => y < year);
   const next = years.find(y => y > year);
@@ -511,11 +354,11 @@ const ticksEl = document.getElementById('ticks');
 const MIN_YEAR = parseInt(slider.min, 10);
 const MAX_YEAR = parseInt(slider.max, 10);
 
-// build century tick labels
+// build tick labels every 10 years
 (function buildTicks(){
-  const step = 200;
+  const step = 10;
   let html = '';
-  for (let y = 1000; y <= MAX_YEAR; y += step) html += `<span>${y}</span>`;
+  for (let y = MIN_YEAR; y <= MAX_YEAR; y += step) html += `<span>${y}</span>`;
   ticksEl.innerHTML = html;
 })();
 
@@ -548,8 +391,15 @@ speedSelect.addEventListener('change', () => {
   if (playTimer){ stopPlay(); startPlay(); }
 });
 
-// initialize on first event year for a non-empty first view
-setYear(EVENTS[0].year);
+/* =========================================================
+   6. BOOTSTRAP — load events.json, then build the map
+   ========================================================= */
+async function init(){
+  await loadEvents();
+  buildMarkers();
+  setYear(1776); // initial view on a non-empty year
+}
+init();
 </script>
 </body>
 </html>
