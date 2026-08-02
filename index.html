@@ -348,9 +348,21 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
 
 /* =========================================================
    3. MARKERS
+   ---------------------------------------------------------
+   Two kinds of events:
+   - Standalone events (no "place" field): shown only in their
+     exact year, as before — battles, treaties, one-off moments.
+   - Series events (share a "place" field, e.g. "boston"): treated
+     as one continuous marker per place. It appears starting at
+     its earliest year and stays on the map every year after —
+     no need for a JSON row per year. Its popup content updates
+     to whichever entry in the series is the most recent one at
+     or before the selected year (e.g. a population figure holds
+     until the next census entry updates it).
    ========================================================= */
 const activeCategories = new Set(Object.keys(CATEGORY_META));
-let markers = [];
+let markers = [];        // standalone, one per one-off event
+let seriesMarkers = [];  // one per "place", spans a sorted timeline
 
 function makeIcon(cat){
   const color = (CATEGORY_META[cat] || CATEGORY_META.culture).color;
@@ -363,28 +375,50 @@ function makeIcon(cat){
   return L.divIcon({ html, className: '', iconSize: [16,16], iconAnchor: [8,8] });
 }
 
+function popupHtml(ev){
+  const meta = CATEGORY_META[ev.category] || CATEGORY_META.culture;
+  const topicLine = ev._topicLabel ? `<div class="pop-topic">${ev._topicLabel}</div>` : '';
+  return `
+    <div class="pop-cat" style="color:${meta.color}">${meta.label}</div>
+    <div class="pop-year">${ev.year}</div>
+    <div class="pop-title">${ev.title}</div>
+    <div class="pop-desc">${ev.desc}</div>
+    ${topicLine}
+  `;
+}
+
 function buildMarkers(){
   markers.forEach(m => map.removeLayer(m));
+  seriesMarkers.forEach(m => map.removeLayer(m));
   markers = [];
+  seriesMarkers = [];
+
+  const seriesGroups = new Map(); // place -> events[]
+
   currentEvents.forEach(ev => {
-    const marker = L.marker([ev.lat, ev.lng], { icon: makeIcon(ev.category) });
-    const meta = CATEGORY_META[ev.category] || CATEGORY_META.culture;
-    const topicLine = ev._topicLabel ? `<div class="pop-topic">${ev._topicLabel}</div>` : '';
-    marker.bindPopup(`
-      <div class="pop-cat" style="color:${meta.color}">${meta.label}</div>
-      <div class="pop-year">${ev.year}</div>
-      <div class="pop-title">${ev.title}</div>
-      <div class="pop-desc">${ev.desc}</div>
-      ${topicLine}
-    `);
-    marker._ev = ev;
-    markers.push(marker);
+    if (ev.place){
+      if (!seriesGroups.has(ev.place)) seriesGroups.set(ev.place, []);
+      seriesGroups.get(ev.place).push(ev);
+    } else {
+      const marker = L.marker([ev.lat, ev.lng], { icon: makeIcon(ev.category) });
+      marker.bindPopup(popupHtml(ev));
+      marker._ev = ev;
+      markers.push(marker);
+    }
+  });
+
+  seriesGroups.forEach((events) => {
+    events.sort((a, b) => a.year - b.year);
+    const marker = L.marker([events[0].lat, events[0].lng], { icon: makeIcon(events[0].category) });
+    marker._series = events; // sorted ascending by year
+    seriesMarkers.push(marker);
   });
 }
 
 function refreshMarkers(){
   const year = parseInt(slider.value, 10);
   let visibleCount = 0;
+
   markers.forEach(m => {
     const show = m._ev.year === year && activeCategories.has(m._ev.category);
     const onMap = map.hasLayer(m);
@@ -392,6 +426,30 @@ function refreshMarkers(){
     if (!show && onMap) map.removeLayer(m);
     if (show) visibleCount++;
   });
+
+  seriesMarkers.forEach(m => {
+    const events = m._series;
+    // latest entry at or before the selected year, if any
+    let current = null;
+    for (const ev of events){
+      if (ev.year <= year) current = ev; else break;
+    }
+    const show = current !== null && activeCategories.has(current.category);
+    const onMap = map.hasLayer(m);
+    if (show){
+      if (m._lastShownYear !== current.year){
+        m.setIcon(makeIcon(current.category));
+        m.bindPopup(popupHtml(current));
+        m._lastShownYear = current.year;
+      }
+      if (!onMap) m.addTo(map);
+      visibleCount++;
+    } else if (onMap){
+      map.removeLayer(m);
+      m._lastShownYear = null;
+    }
+  });
+
   updateMeta(year, visibleCount);
 }
 
@@ -409,6 +467,7 @@ function updateMeta(year, count){
   else if (next !== undefined) hint = `No events in ${year}. Nearest later: ${next}.`;
   yearMeta.textContent = hint;
 }
+
 
 /* =========================================================
    4. LEGEND (categories)
