@@ -1,0 +1,31 @@
+{
+  "topic": "American Independence & French Revolution",
+  "range": "1765–1799",
+  "description": "Two Atlantic revolutions, three decades apart in spark but tightly linked in ideas, money, and people.",
+  "events": [
+    { "year": 1765, "lat": 39.95, "lng": -75.16, "title": "Stamp Act Congress", "category": "politics", "desc": "Delegates from nine colonies met in New York to organize resistance to Britain's new direct tax on printed materials." },
+    { "year": 1770, "lat": 42.36, "lng": -71.06, "title": "Boston Massacre", "category": "conflict", "desc": "British soldiers fired on a crowd of colonists in Boston, hardening colonial opposition to British rule." },
+    { "year": 1773, "lat": 42.36, "lng": -71.06, "title": "Boston Tea Party", "category": "politics", "desc": "Colonists boarded British ships and destroyed tea shipments to protest taxation without representation." },
+    { "year": 1774, "lat": 39.95, "lng": -75.16, "title": "First Continental Congress", "category": "politics", "desc": "Delegates from twelve colonies convened in Philadelphia to coordinate a unified response to British policy." },
+    { "year": 1775, "lat": 42.44, "lng": -71.24, "title": "Lexington and Concord", "category": "conflict", "desc": "The first armed clashes of the American Revolutionary War broke out in Massachusetts." },
+    { "year": 1776, "lat": 39.95, "lng": -75.16, "title": "Declaration of Independence", "category": "politics", "desc": "The Second Continental Congress declared the thirteen colonies free of British rule, drawing heavily on Enlightenment ideas that would soon echo in France." },
+    { "year": 1776, "lat": 40.22, "lng": -74.79, "title": "Battle of Trenton", "category": "conflict", "desc": "Washington's surprise crossing of the Delaware and attack on Trenton revived a flagging Continental Army." },
+    { "year": 1777, "lat": 43.05, "lng": -73.65, "title": "Battle of Saratoga", "category": "conflict", "desc": "An American victory in New York proved a turning point, persuading France to openly back the rebellion." },
+    { "year": 1778, "lat": 48.86, "lng": 2.35, "title": "Franco-American Alliance", "category": "politics", "desc": "France formally allied with the United States, sending fleets, troops, and money that helped tip the war." },
+    { "year": 1781, "lat": 37.24, "lng": -76.51, "title": "Siege of Yorktown", "category": "conflict", "desc": "A combined American and French force compelled the surrender of a major British army in Virginia, effectively ending the war." },
+    { "year": 1783, "lat": 48.85, "lng": 2.35, "title": "Treaty of Paris", "category": "politics", "desc": "Britain formally recognized American independence; France's war spending left its own treasury deeply strained." },
+    { "year": 1787, "lat": 39.95, "lng": -75.16, "title": "US Constitutional Convention", "category": "politics", "desc": "Delegates in Philadelphia drafted a new framework of federal government to replace the weak Articles of Confederation." },
+    { "year": 1789, "lat": 48.86, "lng": 2.35, "title": "Estates-General convenes", "category": "politics", "desc": "Facing bankruptcy after aiding America, Louis XVI summoned France's Estates-General for the first time in over a century." },
+    { "year": 1789, "lat": 48.86, "lng": 2.35, "title": "Storming of the Bastille", "category": "conflict", "desc": "Parisians attacked the fortress-prison, a flashpoint that ignited the French Revolution." },
+    { "year": 1789, "lat": 48.86, "lng": 2.35, "title": "Declaration of the Rights of Man", "category": "culture", "desc": "The National Assembly adopted a founding statement of individual liberty and civic equality." },
+    { "year": 1789, "lat": 48.8, "lng": 2.13, "title": "Women's March on Versailles", "category": "politics", "desc": "Parisian market women marched on the royal palace demanding bread, forcing the king back to Paris." },
+    { "year": 1791, "lat": 49.05, "lng": 4.87, "title": "Flight to Varennes", "category": "conflict", "desc": "Louis XVI's attempt to flee France in disguise was intercepted, shattering public trust in the monarchy." },
+    { "year": 1792, "lat": 48.86, "lng": 2.35, "title": "France declares war on Austria", "category": "conflict", "desc": "The Revolutionary government went to war with Austria and Prussia, beginning decades of European conflict." },
+    { "year": 1792, "lat": 48.86, "lng": 2.35, "title": "French Republic proclaimed", "category": "politics", "desc": "The National Convention abolished the monarchy and declared France a republic." },
+    { "year": 1793, "lat": 48.86, "lng": 2.35, "title": "Execution of Louis XVI", "category": "conflict", "desc": "The former king was executed by guillotine, radicalizing the revolution and alarming monarchies across Europe." },
+    { "year": 1793, "lat": 48.86, "lng": 2.35, "title": "Reign of Terror begins", "category": "conflict", "desc": "The Committee of Public Safety launched a campaign of mass arrests and executions against perceived enemies of the revolution." },
+    { "year": 1794, "lat": 48.86, "lng": 2.35, "title": "Fall of Robespierre", "category": "politics", "desc": "Robespierre was arrested and executed, ending the Terror and opening a more moderate phase of the revolution." },
+    { "year": 1795, "lat": 48.86, "lng": 2.35, "title": "The Directory established", "category": "politics", "desc": "A five-member executive body took power in France, governing through a period of instability and corruption." },
+    { "year": 1799, "lat": 48.86, "lng": 2.35, "title": "Napoleon's coup of 18 Brumaire", "category": "politics", "desc": "Napoleon Bonaparte seized power in France, ending the Revolution's turbulent decade and beginning his rise." }
+  ]
+}
