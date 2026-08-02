@@ -1,0 +1,59 @@
+{
+  "topic": "US Cities & Settlements",
+  "range": "1624–1900",
+  "description": "Watch American settlements take root and grow into major cities — from colonial ports to Gold Rush boomtowns — tracked through census population figures across nearly three centuries.",
+  "events": [
+    { "year": 1624, "lat": 40.71, "lng": -74.01, "title": "New Amsterdam founded", "category": "settlement", "desc": "Dutch colonists established a fur-trading settlement at the tip of Manhattan Island; it would be renamed New York after the English took control in 1664." },
+    { "year": 1790, "lat": 40.71, "lng": -74.01, "title": "New York City: population 33,131", "category": "settlement", "desc": "The first US census recorded New York as the country's largest city, a rank it has held in every census since." },
+    { "year": 1830, "lat": 40.71, "lng": -74.01, "title": "New York City: population 202,589", "category": "settlement", "desc": "New York passed the 200,000 mark, its growth fueled by the newly opened Erie Canal, which routed western trade through the port." },
+    { "year": 1850, "lat": 40.71, "lng": -74.01, "title": "New York City: population 515,547", "category": "settlement", "desc": "The city more than doubled in two decades as immigration surged, especially from Ireland and Germany." },
+    { "year": 1880, "lat": 40.71, "lng": -74.01, "title": "New York City: population 1,206,299", "category": "settlement", "desc": "New York became the first US city recorded with over a million residents." },
+    { "year": 1900, "lat": 40.71, "lng": -74.01, "title": "New York City: population 3,437,202", "category": "settlement", "desc": "The 1898 consolidation with Brooklyn and other boroughs into Greater New York nearly tripled the city's official population overnight." },
+
+    { "year": 1682, "lat": 39.95, "lng": -75.16, "title": "Philadelphia founded", "category": "settlement", "desc": "William Penn laid out the city on land granted by the English crown, planning it on a grid as a haven for religious dissenters." },
+    { "year": 1790, "lat": 39.95, "lng": -75.16, "title": "Philadelphia: population 28,522", "category": "settlement", "desc": "Philadelphia was the new nation's second-largest city and, for a time, its capital." },
+    { "year": 1850, "lat": 39.95, "lng": -75.16, "title": "Philadelphia: population 121,376", "category": "settlement", "desc": "Manufacturing and shipbuilding drove steady growth through the first half of the century." },
+    { "year": 1900, "lat": 39.95, "lng": -75.16, "title": "Philadelphia: population 1,293,697", "category": "settlement", "desc": "Philadelphia remained the country's third-largest city, behind only New York and Chicago." },
+
+    { "year": 1630, "lat": 42.36, "lng": -71.06, "title": "Boston founded", "category": "settlement", "desc": "Puritan colonists settled the Shawmut Peninsula, founding what became the political and commercial center of New England." },
+    { "year": 1790, "lat": 42.36, "lng": -71.06, "title": "Boston: population 18,320", "category": "settlement", "desc": "Boston ranked as the fourth-largest city in the young United States." },
+    { "year": 1850, "lat": 42.36, "lng": -71.06, "title": "Boston: population 136,881", "category": "settlement", "desc": "Landfill projects steadily expanded the peninsula's buildable area as the population grew." },
+    { "year": 1900, "lat": 42.36, "lng": -71.06, "title": "Boston: population 560,892", "category": "settlement", "desc": "Boston had grown into a major industrial and financial center, though it slipped in national rank as western cities boomed." },
+
+    { "year": 1729, "lat": 39.29, "lng": -76.61, "title": "Baltimore founded", "category": "settlement", "desc": "The town was chartered on the Patapsco River as a tobacco-shipping port for the Maryland colony." },
+    { "year": 1790, "lat": 39.29, "lng": -76.61, "title": "Baltimore: population 16,359", "category": "settlement", "desc": "Baltimore was already among the five largest cities in the new republic." },
+    { "year": 1850, "lat": 39.29, "lng": -76.61, "title": "Baltimore: population 169,054", "category": "settlement", "desc": "Rail and shipping trade made Baltimore the country's second-largest city for a time in the mid-1800s." },
+    { "year": 1900, "lat": 39.29, "lng": -76.61, "title": "Baltimore: population 508,957", "category": "settlement", "desc": "Baltimore had grown into a major manufacturing and port city on the East Coast." },
+
+    { "year": 1670, "lat": 32.78, "lng": -79.93, "title": "Charleston founded", "category": "settlement", "desc": "English colonists established Charles Town, which grew into the wealthiest and most cosmopolitan city in the colonial South." },
+    { "year": 1790, "lat": 32.78, "lng": -79.93, "title": "Charleston: population 13,503", "category": "settlement", "desc": "Charleston ranked among the five largest cities in the country, built on rice, indigo, and the trade in enslaved people; its relative rank fell over the next century as inland and western cities outgrew it." },
+
+    { "year": 1833, "lat": 41.88, "lng": -87.63, "title": "Chicago incorporated as a town", "category": "settlement", "desc": "The settlement at the mouth of the Chicago River, with only a few hundred residents, was formally incorporated; it became a city just four years later." },
+    { "year": 1850, "lat": 41.88, "lng": -87.63, "title": "Chicago: population 29,963", "category": "settlement", "desc": "Rail lines converging on Chicago were turning it into the Midwest's dominant transportation hub." },
+    { "year": 1870, "lat": 41.88, "lng": -87.63, "title": "Chicago: population 298,977", "category": "settlement", "desc": "Chicago's population had grown roughly tenfold in twenty years, driven by railroads, stockyards, and manufacturing." },
+    { "year": 1900, "lat": 41.88, "lng": -87.63, "title": "Chicago: population 1,698,575", "category": "settlement", "desc": "Rebuilt after the Great Fire of 1871, Chicago had become the country's second-largest city." },
+
+    { "year": 1764, "lat": 38.63, "lng": -90.19, "title": "St. Louis founded", "category": "settlement", "desc": "French fur traders established a trading post on the Mississippi, which later became a key jumping-off point for westward expeditions and migration." },
+    { "year": 1810, "lat": 38.63, "lng": -90.19, "title": "St. Louis: about 1,400 residents", "category": "settlement", "desc": "St. Louis remained a small frontier river town in the years just after the Louisiana Purchase." },
+    { "year": 1850, "lat": 38.63, "lng": -90.19, "title": "St. Louis: population 77,860", "category": "settlement", "desc": "Steamboat trade on the Mississippi and Missouri Rivers fueled explosive growth in just a few decades." },
+    { "year": 1900, "lat": 38.63, "lng": -90.19, "title": "St. Louis: population 575,238", "category": "settlement", "desc": "St. Louis had grown into the fourth-largest city in the country ahead of hosting the 1904 World's Fair." },
+
+    { "year": 1718, "lat": 29.95, "lng": -90.07, "title": "New Orleans founded", "category": "settlement", "desc": "French colonists established the port city near the mouth of the Mississippi, which passed to Spanish and then back to French control before the 1803 Louisiana Purchase." },
+    { "year": 1810, "lat": 29.95, "lng": -90.07, "title": "New Orleans: about 17,000 residents", "category": "settlement", "desc": "Now under US control, New Orleans was already a major port for cotton and sugar shipped down the Mississippi." },
+    { "year": 1850, "lat": 29.95, "lng": -90.07, "title": "New Orleans: population 116,375", "category": "settlement", "desc": "New Orleans ranked among the five largest US cities, its port among the busiest in the country." },
+    { "year": 1900, "lat": 29.95, "lng": -90.07, "title": "New Orleans: population 287,104", "category": "settlement", "desc": "Growth slowed relative to northern and midwestern rivals, though the port remained economically vital." },
+
+    { "year": 1788, "lat": 39.10, "lng": -84.51, "title": "Cincinnati founded", "category": "settlement", "desc": "Settlers established a town on the Ohio River that grew rapidly as a meatpacking and manufacturing center, earning the nickname \"Porkopolis.\"" },
+    { "year": 1850, "lat": 39.10, "lng": -84.51, "title": "Cincinnati: population 115,435", "category": "settlement", "desc": "Cincinnati had become one of the largest cities in the country, rivaling the older cities of the East Coast." },
+    { "year": 1900, "lat": 39.10, "lng": -84.51, "title": "Cincinnati: population 325,902", "category": "settlement", "desc": "Growth continued but at a slower pace as rail hubs further west, like Chicago, drew trade away." },
+
+    { "year": 1776, "lat": 37.77, "lng": -122.42, "title": "Spanish presidio and mission founded", "category": "settlement", "desc": "Spain established a fort and mission on the San Francisco Bay, the seed of a small settlement that stayed modest for seven decades." },
+    { "year": 1848, "lat": 37.77, "lng": -122.42, "title": "San Francisco: a village of under 1,000", "category": "settlement", "desc": "Just before gold was discovered nearby, the renamed town of San Francisco was still a sleepy port of a few hundred people." },
+    { "year": 1850, "lat": 37.77, "lng": -122.42, "title": "San Francisco: population 34,776", "category": "settlement", "desc": "The Gold Rush transformed the town almost overnight into a booming, chaotic city of prospectors, merchants, and speculators." },
+    { "year": 1900, "lat": 37.77, "lng": -122.42, "title": "San Francisco: population 342,782", "category": "settlement", "desc": "San Francisco had become the largest and most important city on the West Coast." },
+
+    { "year": 1781, "lat": 34.05, "lng": -118.24, "title": "Los Angeles founded", "category": "settlement", "desc": "Spanish colonial authorities established a small farming pueblo, decades before it became part of Mexico and, later, the United States." },
+    { "year": 1850, "lat": 34.05, "lng": -118.24, "title": "Los Angeles: population 1,610", "category": "settlement", "desc": "At the time of California statehood, Los Angeles was still a small, dusty ranching town, far smaller than San Francisco to the north." },
+    { "year": 1900, "lat": 34.05, "lng": -118.24, "title": "Los Angeles: population 102,479", "category": "settlement", "desc": "Rail connections and land promotion sparked rapid growth in the late 1800s, setting up the city's explosive twentieth-century expansion." }
+  ]
+}
