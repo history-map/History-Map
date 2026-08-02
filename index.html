@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronicle Atlas — Historical Events by Topic and Year</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0b1420;
+    --panel:#0f1b28;
+    --paper:#e9e0c9;
+    --paper-dim:#a9a08a;
+    --brass:#c9a227;
+    --brass-dim:#8a7220;
+    --line: rgba(233,224,201,0.14);
+
+    --c-conflict:#a63d2f;
+    --c-discovery:#3f8c7a;
+    --c-science:#c9a227;
+    --c-politics:#5c7a99;
+    --c-culture:#8a6aa0;
+    --c-disaster:#8a8f98;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Source Sans 3', sans-serif;
+    overflow:hidden;
+  }
+
+  #map{ position:absolute; inset:0; background:var(--ink); }
+
+  /* ---------- Header ---------- */
+  .topbar{
+    position:absolute; top:0; left:0; right:0; z-index:900;
+    display:flex; align-items:flex-start; justify-content:space-between;
+    padding:22px 28px 0 28px;
+    pointer-events:none;
+    gap:20px;
+  }
+  .brand{ pointer-events:auto; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--brass); margin:0 0 4px 0;
+    max-width:520px;
+  }
+  .brand h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:26px; margin:0 0 12px 0;
+    color:var(--paper); letter-spacing:.01em;
+    text-shadow:0 2px 12px rgba(0,0,0,.5);
+  }
+
+  .topic-picker{
+    display:flex; align-items:center; gap:9px;
+  }
+  .topic-picker label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px; text-transform:uppercase; letter-spacing:.14em;
+    color:var(--paper-dim);
+  }
+  .topic-picker select{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    background:rgba(11,20,32,0.82);
+    color:var(--paper);
+    border:1px solid var(--brass-dim);
+    border-radius:7px;
+    padding:7px 10px;
+    cursor:pointer;
+    backdrop-filter:blur(6px);
+    max-width:min(60vw, 340px);
+  }
+  .topic-picker select:hover{ border-color:var(--brass); }
+  .topic-picker select:focus{ outline:none; border-color:var(--brass); }
+
+  .legend{
+    pointer-events:auto;
+    background:rgba(11,20,32,0.82);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 16px;
+    backdrop-filter:blur(6px);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    flex:0 0 auto;
+  }
+  .legend-title{
+    color:var(--paper-dim); text-transform:uppercase; letter-spacing:.14em;
+    font-size:10px; margin-bottom:8px;
+  }
+  .legend-row{
+    display:flex; align-items:center; gap:8px; margin:5px 0;
+    cursor:pointer; user-select:none; opacity:1; transition:opacity .15s ease;
+  }
+  .legend-row.off{ opacity:.32; }
+  .dot{
+    width:9px; height:9px; border-radius:50%; flex:0 0 auto;
+    box-shadow:0 0 0 1px rgba(0,0,0,.4);
+  }
+  .legend-row span.label{ color:var(--paper); font-size:11.5px; letter-spacing:.01em;}
+
+  /* ---------- Bottom instrument (timeline) ---------- */
+  .instrument{
+    position:absolute; left:0; right:0; bottom:0; z-index:900;
+    background:linear-gradient(180deg, rgba(11,20,32,0) 0%, rgba(11,20,32,0.92) 26%, rgba(11,20,32,0.98) 100%);
+    padding-top:60px;
+  }
+  .instrument-inner{ max-width:1180px; margin:0 auto; padding:0 28px 22px 28px; }
+
+  .year-readout{ display:flex; align-items:flex-end; gap:18px; margin-bottom:10px; }
+  input.year{
+    font-family:'Fraunces', serif; font-weight:700; font-size:64px; line-height:1;
+    color:var(--brass); letter-spacing:.01em;
+    text-shadow:0 2px 20px rgba(201,162,39,0.25);
+    width:190px;
+    font-variant-numeric: tabular-nums;
+    background:transparent;
+    border:none;
+    border-bottom:2px solid transparent;
+    padding:0 0 2px 0;
+    outline:none;
+    transition:border-color .15s ease;
+    -moz-appearance:textfield;
+  }
+  input.year::-webkit-outer-spin-button,
+  input.year::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  input.year:hover{ border-bottom-color:var(--line); }
+  input.year:focus{ border-bottom-color:var(--brass); }
+  .year-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--paper-dim); padding-bottom:12px; }
+  .year-meta strong{ color:var(--paper); font-weight:600;}
+  .year-meta.warn{ color:#d99a6a; }
+
+  .controls-row{ display:flex; align-items:center; gap:14px; }
+
+  .stepbtn{
+    flex:0 0 auto; width:42px;height:42px; border-radius:50%;
+    border:1px solid var(--brass-dim);
+    background:rgba(201,162,39,0.08);
+    color:var(--brass); cursor:pointer;
+    display:flex;align-items:center;justify-content:center; font-size:14px;
+    transition:background .15s ease, transform .1s ease;
+  }
+  .stepbtn:hover{ background:rgba(201,162,39,0.18); }
+  .stepbtn:active{ transform:scale(0.94); }
+  .stepbtn:disabled{ opacity:.3; cursor:not-allowed; }
+  .stepbtn:disabled:hover{ background:rgba(201,162,39,0.08); }
+
+  .slider-wrap{ flex:1 1 auto; position:relative; padding-top:6px; }
+
+  .ticks{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:var(--paper-dim);
+    padding:0 2px; margin-bottom:4px; letter-spacing:.02em;
+  }
+
+  input[type=range]{
+    -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:2px;
+    background:linear-gradient(90deg, var(--brass-dim), var(--line));
+    outline:none; cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #f0d878, var(--brass) 60%, var(--brass-dim) 100%);
+    border:2px solid var(--ink);
+    box-shadow:0 0 0 1px var(--brass), 0 2px 8px rgba(0,0,0,.5);
+    cursor:pointer; margin-top:-7px;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #f0d878, var(--brass) 60%, var(--brass-dim) 100%);
+    border:2px solid var(--ink); cursor:pointer;
+  }
+  input[type=range]::-moz-range-track{ height:4px; border-radius:2px; background:var(--line); }
+
+  /* ---------- Popup styling ---------- */
+  .leaflet-popup-content-wrapper{
+    background:var(--panel); color:var(--paper);
+    border:1px solid var(--line); border-radius:8px;
+    box-shadow:0 8px 30px rgba(0,0,0,.5);
+  }
+  .leaflet-popup-tip{ background:var(--panel); border:1px solid var(--line);}
+  .leaflet-popup-content{ margin:14px 16px; font-family:'Source Sans 3', sans-serif; }
+  .pop-cat{
+    font-family:'IBM Plex Mono', monospace; font-size:10px;
+    text-transform:uppercase; letter-spacing:.14em; margin-bottom:5px;
+  }
+  .pop-year{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:12px; margin-bottom:4px; }
+  .pop-title{ font-family:'Fraunces', serif; font-weight:600; font-size:17px; margin:0 0 6px 0; color:var(--paper); }
+  .pop-desc{ font-size:13px; line-height:1.5; color:#cfc6ab; }
+  .pop-topic{ font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--paper-dim); margin-top:8px; }
+  .leaflet-popup-close-button{ color:var(--paper-dim) !important; }
+  .leaflet-container a.leaflet-popup-close-button:hover{ color:var(--paper) !important; }
+
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
+
+  @media (max-width:720px){
+    input.year{ font-size:42px; width:120px;}
+    .legend{ display:none; }
+    .topbar{ padding:16px 16px 0 16px; flex-direction:column; }
+    .instrument-inner{ padding:0 16px 16px 16px; }
+    .topic-picker select{ max-width:70vw; }
+  }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="topbar">
+  <div class="brand">
+    <p class="eyebrow" id="eyebrow">An interactive gazetteer</p>
+    <h1>Chronicle Atlas</h1>
+    <div class="topic-picker">
+      <label for="topicSelect">Topic</label>
+      <select id="topicSelect"><option value="all">Loading topics…</option></select>
+    </div>
+  </div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<div class="instrument">
+  <div class="instrument-inner">
+    <div class="year-readout">
+      <input class="year" id="yearInput" type="number" inputmode="numeric" value="1776" aria-label="Enter a year">
+      <div class="year-meta" id="yearMeta">Loading events…</div>
+    </div>
+    <div class="controls-row">
+      <button class="stepbtn" id="prevBtn" title="Previous year" aria-label="Step back one year">&#9664;</button>
+      <div class="slider-wrap">
+        <div class="ticks" id="ticks"></div>
+        <input type="range" id="yearSlider" min="1000" max="2025" step="1" value="1776">
+      </div>
+      <button class="stepbtn" id="nextBtn" title="Next year" aria-label="Step forward one year">&#9654;</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* =========================================================
+   1. TOPIC / EVENT DATA
+   ---------------------------------------------------------
+   Data lives in /data as one JSON file per topic, plus a
+   manifest that lists which files to load.
+
+   /data/manifest.json        — a plain array of filenames
+   /data/<your-topic>.json    — { "topic": "...", "range": "...",
+                                   "description": "...", "events": [...] }
+
+   The dropdown label for each topic comes from that file's
+   own "topic" field — NOT the filename — so you can name
+   files however you like and still control the display text.
+
+   To add a new topic:
+     1. Drop a new /data/your-file.json with a "topic" field
+        and an "events" array (same shape as the others).
+     2. Add "your-file.json" to /data/manifest.json.
+   No other code changes needed — the dropdown, slider range,
+   and map all update automatically.
+   ========================================================= */
+const MANIFEST_URL = 'data/manifest.json';
+
+let TOPICS = [];          // [{ id, topic, range, description, events }]
+let currentEvents = [];   // events currently shown (one topic, or merged "All")
+let currentTopicId = null;
+
+async function loadTopics(){
+  let filenames = [];
+  try {
+    const res = await fetch(MANIFEST_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    filenames = await res.json();
+  } catch (err) {
+    console.error('Could not load data/manifest.json:', err);
+    yearMeta.textContent = 'Could not load data/manifest.json — check the /data folder exists next to this page and that you are viewing it over http(s), not a local file:// path.';
+    return;
+  }
+
+  const loads = filenames.map(async (filename) => {
+    try {
+      const res = await fetch('data/' + filename);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const json = await res.json();
+      const id = filename.replace(/\.json$/i, '');
+      return {
+        id,
+        topic: json.topic || prettifyFilename(filename),
+        range: json.range || '',
+        description: json.description || '',
+        events: Array.isArray(json.events) ? json.events : [],
+      };
+    } catch (err) {
+      console.error('Could not load data/' + filename + ':', err);
+      return null;
+    }
+  });
+
+  TOPICS = (await Promise.all(loads)).filter(Boolean);
+  // order the dropdown chronologically by each topic's earliest event
+  TOPICS.sort((a, b) => earliestYear(a) - earliestYear(b));
+}
+
+function earliestYear(topic){
+  return topic.events.length ? Math.min(...topic.events.map(e => e.year)) : Infinity;
+}
+
+function prettifyFilename(filename){
+  return filename.replace(/\.json$/i, '').replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+const CATEGORY_META = {
+  conflict:   { label: "Conflict",   color: "#a63d2f" },
+  discovery:  { label: "Discovery",  color: "#3f8c7a" },
+  science:    { label: "Science & Tech", color: "#c9a227" },
+  politics:   { label: "Politics",   color: "#5c7a99" },
+  culture:    { label: "Culture",    color: "#8a6aa0" },
+  disaster:   { label: "Disaster",   color: "#8a8f98" },
+  settlement: { label: "Settlement & Growth", color: "#c17817" },
+};
+
+/* =========================================================
+   2. MAP SETUP
+   ========================================================= */
+const map = L.map('map', {
+  worldCopyJump: true,
+  zoomControl: false,
+  minZoom: 2,
+}).setView([30, -20], 3);
+
+L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19,
+}).addTo(map);
+
+/* =========================================================
+   3. MARKERS
+   ========================================================= */
+const activeCategories = new Set(Object.keys(CATEGORY_META));
+let markers = [];
+
+function makeIcon(cat){
+  const color = (CATEGORY_META[cat] || CATEGORY_META.culture).color;
+  const html = `<div style="
+      width:16px;height:16px;border-radius:50%;
+      background:radial-gradient(circle at 35% 30%, ${color}dd, ${color} 70%);
+      border:2px solid #0b1420;
+      box-shadow:0 0 0 1px ${color}, 0 0 10px ${color}99;
+    "></div>`;
+  return L.divIcon({ html, className: '', iconSize: [16,16], iconAnchor: [8,8] });
+}
+
+function buildMarkers(){
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+  currentEvents.forEach(ev => {
+    const marker = L.marker([ev.lat, ev.lng], { icon: makeIcon(ev.category) });
+    const meta = CATEGORY_META[ev.category] || CATEGORY_META.culture;
+    const topicLine = ev._topicLabel ? `<div class="pop-topic">${ev._topicLabel}</div>` : '';
+    marker.bindPopup(`
+      <div class="pop-cat" style="color:${meta.color}">${meta.label}</div>
+      <div class="pop-year">${ev.year}</div>
+      <div class="pop-title">${ev.title}</div>
+      <div class="pop-desc">${ev.desc}</div>
+      ${topicLine}
+    `);
+    marker._ev = ev;
+    markers.push(marker);
+  });
+}
+
+function refreshMarkers(){
+  const year = parseInt(slider.value, 10);
+  let visibleCount = 0;
+  markers.forEach(m => {
+    const show = m._ev.year === year && activeCategories.has(m._ev.category);
+    const onMap = map.hasLayer(m);
+    if (show && !onMap) m.addTo(map);
+    if (!show && onMap) map.removeLayer(m);
+    if (show) visibleCount++;
+  });
+  updateMeta(year, visibleCount);
+}
+
+function updateMeta(year, count){
+  if (count > 0){
+    yearMeta.innerHTML = `<strong>${count}</strong> event${count>1?'s':''} on the map this year.`;
+    return;
+  }
+  const years = [...new Set(currentEvents.map(e=>e.year))].sort((a,b)=>a-b);
+  const prev = [...years].reverse().find(y => y < year);
+  const next = years.find(y => y > year);
+  let hint = 'No recorded events this year.';
+  if (prev !== undefined && next !== undefined) hint = `No events in ${year}. Nearest: ${prev} and ${next}.`;
+  else if (prev !== undefined) hint = `No events in ${year}. Nearest earlier: ${prev}.`;
+  else if (next !== undefined) hint = `No events in ${year}. Nearest later: ${next}.`;
+  yearMeta.textContent = hint;
+}
+
+/* =========================================================
+   4. LEGEND (categories)
+   ========================================================= */
+const legendEl = document.getElementById('legend');
+legendEl.innerHTML = '<div class="legend-title">Categories</div>' +
+  Object.entries(CATEGORY_META).map(([key, meta]) => `
+    <div class="legend-row" data-cat="${key}">
+      <span class="dot" style="background:${meta.color}"></span>
+      <span class="label">${meta.label}</span>
+    </div>
+  `).join('');
+
+legendEl.querySelectorAll('.legend-row').forEach(row => {
+  row.addEventListener('click', () => {
+    const cat = row.dataset.cat;
+    if (activeCategories.has(cat)){ activeCategories.delete(cat); row.classList.add('off'); }
+    else { activeCategories.add(cat); row.classList.remove('off'); }
+    refreshMarkers();
+  });
+});
+
+/* =========================================================
+   5. TOPIC PICKER
+   ========================================================= */
+const topicSelect = document.getElementById('topicSelect');
+const eyebrowEl = document.getElementById('eyebrow');
+
+function populateTopicSelect(){
+  const allOption = `<option value="all">All topics</option>`;
+  const topicOptions = TOPICS.map(t => `<option value="${t.id}">${t.topic}</option>`).join('');
+  topicSelect.innerHTML = allOption + topicOptions;
+}
+
+topicSelect.addEventListener('change', () => selectTopic(topicSelect.value));
+
+function selectTopic(id){
+  currentTopicId = id;
+  topicSelect.value = id;
+
+  if (id === 'all'){
+    currentEvents = TOPICS.flatMap(t =>
+      t.events.map(e => ({ ...e, _topicLabel: t.topic }))
+    );
+    eyebrowEl.textContent = TOPICS.length
+      ? `All topics — ${TOPICS.length} datasets combined`
+      : 'An interactive gazetteer';
+  } else {
+    const t = TOPICS.find(t => t.id === id);
+    currentEvents = t ? t.events.map(e => ({ ...e })) : [];
+    eyebrowEl.textContent = t ? (t.description || t.range || 'An interactive gazetteer') : 'An interactive gazetteer';
+  }
+
+  const years = currentEvents.map(e => e.year);
+  MIN_YEAR = years.length ? Math.min(...years) : 1000;
+  MAX_YEAR = years.length ? Math.max(...years) : 2025;
+  if (MIN_YEAR === MAX_YEAR) MAX_YEAR = MIN_YEAR + 1; // avoid a zero-width slider
+
+  slider.min = MIN_YEAR;
+  slider.max = MAX_YEAR;
+  buildTicks();
+  buildMarkers();
+
+  // keep the current year if it still falls in range, else jump to the topic's first event
+  const existing = parseInt(yearInput.value, 10);
+  const startYear = (!Number.isNaN(existing) && existing >= MIN_YEAR && existing <= MAX_YEAR)
+    ? existing
+    : (years.length ? Math.min(...years) : MIN_YEAR);
+  setYear(startYear);
+}
+
+/* =========================================================
+   6. SLIDER / YEAR INPUT / STEP BUTTONS
+   ========================================================= */
+const slider = document.getElementById('yearSlider');
+const yearInput = document.getElementById('yearInput');
+const yearMeta = document.getElementById('yearMeta');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const ticksEl = document.getElementById('ticks');
+
+let MIN_YEAR = parseInt(slider.min, 10);
+let MAX_YEAR = parseInt(slider.max, 10);
+
+function buildTicks(){
+  const span = MAX_YEAR - MIN_YEAR;
+  // aim for roughly 6-10 tick labels regardless of the topic's span
+  const rawStep = span / 7;
+  const niceSteps = [1,2,5,10,20,25,50,100,200,500];
+  const step = niceSteps.find(s => s >= rawStep) || niceSteps[niceSteps.length - 1];
+  let html = '';
+  for (let y = MIN_YEAR; y <= MAX_YEAR; y += step) html += `<span>${y}</span>`;
+  if ((MAX_YEAR - MIN_YEAR) % step !== 0) html += `<span>${MAX_YEAR}</span>`;
+  ticksEl.innerHTML = html;
+}
+
+function clampYear(y){
+  return Math.min(MAX_YEAR, Math.max(MIN_YEAR, y));
+}
+
+function setYear(y){
+  y = clampYear(y);
+  slider.value = y;
+  yearInput.value = y;
+  yearInput.min = MIN_YEAR;
+  yearInput.max = MAX_YEAR;
+  prevBtn.disabled = (y <= MIN_YEAR);
+  nextBtn.disabled = (y >= MAX_YEAR);
+  refreshMarkers();
+}
+
+slider.addEventListener('input', () => setYear(parseInt(slider.value, 10)));
+
+yearInput.addEventListener('change', () => {
+  const parsed = parseInt(yearInput.value, 10);
+  setYear(Number.isNaN(parsed) ? MIN_YEAR : parsed);
+});
+yearInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') yearInput.blur();
+});
+
+prevBtn.addEventListener('click', () => setYear(parseInt(slider.value, 10) - 1));
+nextBtn.addEventListener('click', () => setYear(parseInt(slider.value, 10) + 1));
+
+document.addEventListener('keydown', (e) => {
+  if (document.activeElement === yearInput) return;
+  if (e.key === 'ArrowLeft') setYear(parseInt(slider.value, 10) - 1);
+  if (e.key === 'ArrowRight') setYear(parseInt(slider.value, 10) + 1);
+});
+
+/* =========================================================
+   7. BOOTSTRAP
+   ========================================================= */
+async function init(){
+  await loadTopics();
+  populateTopicSelect();
+
+  // default to the American Independence & French Revolution example if present,
+  // otherwise fall back to "All topics"
+  const preferred = TOPICS.find(t => /independence|french revolution/i.test(t.topic));
+  selectTopic(preferred ? preferred.id : 'all');
+}
+init();
+</script>
+</body>
+</html>
