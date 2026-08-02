@@ -1,0 +1,330 @@
+[
+  {
+    "year": 1770,
+    "lat": 42.36,
+    "lng": -71.06,
+    "title": "Boston Massacre",
+    "category": "conflict",
+    "desc": "British soldiers fired on a crowd of colonists in Boston, hardening colonial opposition to British rule."
+  },
+  {
+    "year": 1773,
+    "lat": 42.36,
+    "lng": -71.06,
+    "title": "Boston Tea Party",
+    "category": "politics",
+    "desc": "Colonists boarded British ships and destroyed tea shipments to protest taxation without representation."
+  },
+  {
+    "year": 1775,
+    "lat": 42.44,
+    "lng": -71.24,
+    "title": "Lexington and Concord",
+    "category": "conflict",
+    "desc": "The first armed clashes of the American Revolutionary War broke out in Massachusetts."
+  },
+  {
+    "year": 1776,
+    "lat": 39.95,
+    "lng": -75.16,
+    "title": "Declaration of Independence",
+    "category": "politics",
+    "desc": "The Second Continental Congress in Philadelphia declared the thirteen colonies free of British rule."
+  },
+  {
+    "year": 1777,
+    "lat": 43.05,
+    "lng": -73.65,
+    "title": "Battle of Saratoga",
+    "category": "conflict",
+    "desc": "An American victory in New York proved a turning point, helping secure French support for the Revolution."
+  },
+  {
+    "year": 1781,
+    "lat": 37.24,
+    "lng": -76.51,
+    "title": "Siege of Yorktown",
+    "category": "conflict",
+    "desc": "A combined American and French force compelled the surrender of a major British army in Virginia."
+  },
+  {
+    "year": 1783,
+    "lat": 48.85,
+    "lng": 2.35,
+    "title": "Treaty of Paris",
+    "category": "politics",
+    "desc": "Britain formally recognized the independence of the United States, ending the Revolutionary War."
+  },
+  {
+    "year": 1787,
+    "lat": 39.95,
+    "lng": -75.16,
+    "title": "US Constitutional Convention",
+    "category": "politics",
+    "desc": "Delegates meeting in Philadelphia drafted a new framework of federal government for the United States."
+  },
+  {
+    "year": 1789,
+    "lat": 48.86,
+    "lng": 2.35,
+    "title": "Storming of the Bastille",
+    "category": "politics",
+    "desc": "Parisians attacked the fortress-prison, a flashpoint that ignited the French Revolution."
+  },
+  {
+    "year": 1791,
+    "lat": 38.9,
+    "lng": -77.03,
+    "title": "US Bill of Rights ratified",
+    "category": "politics",
+    "desc": "Ten amendments guaranteeing individual liberties were added to the US Constitution."
+  },
+  {
+    "year": 1793,
+    "lat": 48.86,
+    "lng": 2.35,
+    "title": "Execution of Louis XVI",
+    "category": "politics",
+    "desc": "The French king was executed by guillotine, radicalizing the revolution and alarming monarchies across Europe."
+  },
+  {
+    "year": 1798,
+    "lat": 53.35,
+    "lng": -6.26,
+    "title": "Irish Rebellion",
+    "category": "conflict",
+    "desc": "Irish republicans, inspired by revolutionary France, rose up against British rule and were suppressed."
+  },
+  {
+    "year": 1799,
+    "lat": 48.86,
+    "lng": 2.35,
+    "title": "Napoleon's coup of 18 Brumaire",
+    "category": "politics",
+    "desc": "Napoleon Bonaparte seized power in France, ending the Revolution's chaotic decade and beginning his rise."
+  },
+  {
+    "year": 1803,
+    "lat": 29.95,
+    "lng": -90.07,
+    "title": "Louisiana Purchase",
+    "category": "politics",
+    "desc": "The United States bought a vast western territory from France, roughly doubling the country's size."
+  },
+  {
+    "year": 1804,
+    "lat": 48.85,
+    "lng": 2.35,
+    "title": "Napoleon crowned Emperor",
+    "category": "politics",
+    "desc": "Napoleon crowned himself Emperor of the French at Notre-Dame Cathedral in Paris."
+  },
+  {
+    "year": 1805,
+    "lat": 36.18,
+    "lng": -6.03,
+    "title": "Battle of Trafalgar",
+    "category": "conflict",
+    "desc": "The British navy under Nelson decisively defeated the combined French and Spanish fleets off Spain's coast."
+  },
+  {
+    "year": 1807,
+    "lat": 51.5,
+    "lng": -0.13,
+    "title": "British Slave Trade Act",
+    "category": "politics",
+    "desc": "Britain outlawed the transatlantic slave trade within its empire, a landmark in the abolitionist movement."
+  },
+  {
+    "year": 1812,
+    "lat": 38.9,
+    "lng": -77.03,
+    "title": "War of 1812 begins",
+    "category": "conflict",
+    "desc": "The United States declared war on Britain over trade restrictions and other grievances."
+  },
+  {
+    "year": 1814,
+    "lat": 38.9,
+    "lng": -77.03,
+    "title": "Burning of Washington",
+    "category": "conflict",
+    "desc": "British forces captured and burned the US capital, including the White House, during the War of 1812."
+  },
+  {
+    "year": 1814,
+    "lat": 48.21,
+    "lng": 16.37,
+    "title": "Congress of Vienna opens",
+    "category": "politics",
+    "desc": "European powers convened in Vienna to redraw the continent's map after Napoleon's defeat."
+  },
+  {
+    "year": 1815,
+    "lat": 50.68,
+    "lng": 4.4,
+    "title": "Battle of Waterloo",
+    "category": "conflict",
+    "desc": "Napoleon's final defeat near Brussels ended his rule and closed the Napoleonic Wars."
+  },
+  {
+    "year": 1819,
+    "lat": 53.48,
+    "lng": -2.24,
+    "title": "Peterloo Massacre",
+    "category": "conflict",
+    "desc": "Cavalry charged a crowd demanding parliamentary reform in Manchester, killing several protesters."
+  },
+  {
+    "year": 1820,
+    "lat": 38.9,
+    "lng": -77.03,
+    "title": "Missouri Compromise",
+    "category": "politics",
+    "desc": "The US Congress brokered a deal balancing free and slave states, deferring the conflict over slavery's expansion."
+  },
+  {
+    "year": 1825,
+    "lat": 43.16,
+    "lng": -77.61,
+    "title": "Erie Canal completed",
+    "category": "discovery",
+    "desc": "A canal linking the Great Lakes to the Hudson River transformed trade and westward expansion in the US."
+  },
+  {
+    "year": 1829,
+    "lat": 51.5,
+    "lng": -0.13,
+    "title": "Catholic Emancipation",
+    "category": "politics",
+    "desc": "Britain removed most legal restrictions on Roman Catholics, a major shift in civil rights."
+  },
+  {
+    "year": 1830,
+    "lat": 48.86,
+    "lng": 2.35,
+    "title": "July Revolution",
+    "category": "politics",
+    "desc": "Parisians overthrew King Charles X in three days of unrest, installing a more liberal monarchy."
+  },
+  {
+    "year": 1832,
+    "lat": 51.5,
+    "lng": -0.13,
+    "title": "Great Reform Act",
+    "category": "politics",
+    "desc": "Britain expanded voting rights and redrew parliamentary districts, curbing aristocratic control of Parliament."
+  },
+  {
+    "year": 1833,
+    "lat": 51.5,
+    "lng": -0.13,
+    "title": "Slavery Abolition Act",
+    "category": "politics",
+    "desc": "Britain abolished slavery across most of its empire, freeing enslaved people in its colonies."
+  },
+  {
+    "year": 1836,
+    "lat": 29.42,
+    "lng": -98.49,
+    "title": "Battle of the Alamo",
+    "category": "conflict",
+    "desc": "Mexican forces overwhelmed Texan defenders at San Antonio during the Texas Revolution."
+  },
+  {
+    "year": 1837,
+    "lat": 51.5,
+    "lng": -0.13,
+    "title": "Victoria becomes Queen",
+    "category": "culture",
+    "desc": "Victoria ascended the British throne at eighteen, beginning a reign that would define an era."
+  },
+  {
+    "year": 1838,
+    "lat": 35.05,
+    "lng": -85.31,
+    "title": "Trail of Tears",
+    "category": "disaster",
+    "desc": "The US government forcibly removed Cherokee and other Native peoples westward; thousands died along the way."
+  },
+  {
+    "year": 1844,
+    "lat": 38.9,
+    "lng": -77.03,
+    "title": "First long-distance telegraph",
+    "category": "science",
+    "desc": "Samuel Morse sent the first message over a working telegraph line between Washington and Baltimore."
+  },
+  {
+    "year": 1845,
+    "lat": 51.55,
+    "lng": -9.27,
+    "title": "Great Famine begins in Ireland",
+    "category": "disaster",
+    "desc": "Potato blight destroyed harvests across Ireland, leading to mass starvation and emigration."
+  },
+  {
+    "year": 1846,
+    "lat": 25.9,
+    "lng": -97.47,
+    "title": "Mexican-American War begins",
+    "category": "conflict",
+    "desc": "Fighting broke out along the disputed Texas border, leading to a war that reshaped North America's map."
+  },
+  {
+    "year": 1848,
+    "lat": 50.11,
+    "lng": 8.68,
+    "title": "Revolutions of 1848",
+    "category": "politics",
+    "desc": "A wave of liberal and nationalist uprisings swept across European cities from Paris to Frankfurt."
+  },
+  {
+    "year": 1848,
+    "lat": 42.91,
+    "lng": -76.8,
+    "title": "Seneca Falls Convention",
+    "category": "culture",
+    "desc": "The first major US women's rights convention convened in New York, launching the organized suffrage movement."
+  },
+  {
+    "year": 1849,
+    "lat": 38.8,
+    "lng": -120.89,
+    "title": "California Gold Rush peak",
+    "category": "discovery",
+    "desc": "Hundreds of thousands rushed to California after gold was found at Sutter's Mill, transforming the American West."
+  },
+  {
+    "year": 1850,
+    "lat": 38.9,
+    "lng": -77.03,
+    "title": "Compromise of 1850",
+    "category": "politics",
+    "desc": "US Congress passed a package of laws attempting to defuse rising tension between free and slave states."
+  },
+  {
+    "year": 1854,
+    "lat": 44.6,
+    "lng": 33.53,
+    "title": "Crimean War begins",
+    "category": "conflict",
+    "desc": "Russia clashed with an alliance including Britain, France, and the Ottoman Empire over influence in the Black Sea region."
+  },
+  {
+    "year": 1859,
+    "lat": 51.5,
+    "lng": -0.13,
+    "title": "On the Origin of Species",
+    "category": "science",
+    "desc": "Charles Darwin published his theory of evolution by natural selection in London."
+  },
+  {
+    "year": 1860,
+    "lat": 39.8,
+    "lng": -89.64,
+    "title": "Lincoln elected President",
+    "category": "politics",
+    "desc": "Abraham Lincoln's election on an anti-slavery-expansion platform pushed the US toward civil war."
+  }
+]
