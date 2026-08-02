@@ -91,28 +91,42 @@
   .instrument-inner{ max-width:1180px; margin:0 auto; padding:0 28px 22px 28px; }
 
   .year-readout{ display:flex; align-items:flex-end; gap:18px; margin-bottom:10px; }
-  .year-readout .year{
+  input.year{
     font-family:'Fraunces', serif; font-weight:700; font-size:64px; line-height:1;
     color:var(--brass); letter-spacing:.01em;
     text-shadow:0 2px 20px rgba(201,162,39,0.25);
-    min-width:190px;
+    width:190px;
     font-variant-numeric: tabular-nums;
+    background:transparent;
+    border:none;
+    border-bottom:2px solid transparent;
+    padding:0 0 2px 0;
+    outline:none;
+    transition:border-color .15s ease;
+    -moz-appearance:textfield;
   }
+  input.year::-webkit-outer-spin-button,
+  input.year::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  input.year:hover{ border-bottom-color:var(--line); }
+  input.year:focus{ border-bottom-color:var(--brass); }
   .year-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--paper-dim); padding-bottom:12px; }
   .year-meta strong{ color:var(--paper); font-weight:600;}
+  .year-meta.warn{ color:#d99a6a; }
 
   .controls-row{ display:flex; align-items:center; gap:14px; }
 
-  .playbtn{
+  .stepbtn{
     flex:0 0 auto; width:42px;height:42px; border-radius:50%;
     border:1px solid var(--brass-dim);
     background:rgba(201,162,39,0.08);
     color:var(--brass); cursor:pointer;
-    display:flex;align-items:center;justify-content:center; font-size:15px;
+    display:flex;align-items:center;justify-content:center; font-size:14px;
     transition:background .15s ease, transform .1s ease;
   }
-  .playbtn:hover{ background:rgba(201,162,39,0.18); }
-  .playbtn:active{ transform:scale(0.94); }
+  .stepbtn:hover{ background:rgba(201,162,39,0.18); }
+  .stepbtn:active{ transform:scale(0.94); }
+  .stepbtn:disabled{ opacity:.3; cursor:not-allowed; }
+  .stepbtn:disabled:hover{ background:rgba(201,162,39,0.08); }
 
   .slider-wrap{ flex:1 1 auto; position:relative; padding-top:6px; }
 
@@ -141,13 +155,6 @@
   }
   input[type=range]::-moz-range-track{ height:4px; border-radius:2px; background:var(--line); }
 
-  .speed-select{
-    flex:0 0 auto; font-family:'IBM Plex Mono', monospace; font-size:11px;
-    background:transparent; color:var(--paper-dim);
-    border:1px solid var(--line); border-radius:6px; padding:9px 8px; cursor:pointer;
-  }
-  .speed-select:hover{ color:var(--paper); border-color:var(--brass-dim); }
-
   /* ---------- Popup styling ---------- */
   .leaflet-popup-content-wrapper{
     background:var(--panel); color:var(--paper);
@@ -170,7 +177,7 @@
   ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
 
   @media (max-width:720px){
-    .year-readout .year{ font-size:42px; min-width:auto;}
+    input.year{ font-size:42px; width:120px;}
     .legend{ display:none; }
     .topbar{ padding:16px 16px 0 16px; }
     .instrument-inner{ padding:0 16px 16px 16px; }
@@ -192,20 +199,16 @@
 <div class="instrument">
   <div class="instrument-inner">
     <div class="year-readout">
-      <div class="year" id="yearDisplay">1776</div>
-      <div class="year-meta" id="yearMeta">Drag the dial or press play to travel through time.</div>
+      <input class="year" id="yearInput" type="number" inputmode="numeric" min="1770" max="1860" step="1" value="1776" aria-label="Enter a year">
+      <div class="year-meta" id="yearMeta">Type a year, or step forward and back through time.</div>
     </div>
     <div class="controls-row">
-      <button class="playbtn" id="playBtn" title="Play / pause" aria-label="Play or pause timeline">&#9654;</button>
+      <button class="stepbtn" id="prevBtn" title="Previous year" aria-label="Step back one year">&#9664;</button>
       <div class="slider-wrap">
         <div class="ticks" id="ticks"></div>
         <input type="range" id="yearSlider" min="1770" max="1860" step="1" value="1776">
       </div>
-      <select class="speed-select" id="speedSelect" title="Playback speed">
-        <option value="700">Slow</option>
-        <option value="350" selected>Normal</option>
-        <option value="140">Fast</option>
-      </select>
+      <button class="stepbtn" id="nextBtn" title="Next year" aria-label="Step forward one year">&#9654;</button>
     </div>
   </div>
 </div>
@@ -342,13 +345,13 @@ legendEl.querySelectorAll('.legend-row').forEach(row => {
 });
 
 /* =========================================================
-   5. SLIDER / TIMELINE
+   5. SLIDER / YEAR INPUT / STEP BUTTONS
    ========================================================= */
 const slider = document.getElementById('yearSlider');
-const yearDisplay = document.getElementById('yearDisplay');
+const yearInput = document.getElementById('yearInput');
 const yearMeta = document.getElementById('yearMeta');
-const playBtn = document.getElementById('playBtn');
-const speedSelect = document.getElementById('speedSelect');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 const ticksEl = document.getElementById('ticks');
 
 const MIN_YEAR = parseInt(slider.min, 10);
@@ -362,33 +365,40 @@ const MAX_YEAR = parseInt(slider.max, 10);
   ticksEl.innerHTML = html;
 })();
 
+function clampYear(y){
+  return Math.min(MAX_YEAR, Math.max(MIN_YEAR, y));
+}
+
 function setYear(y){
+  y = clampYear(y);
   slider.value = y;
-  yearDisplay.textContent = y;
+  yearInput.value = y;
+  prevBtn.disabled = (y <= MIN_YEAR);
+  nextBtn.disabled = (y >= MAX_YEAR);
   refreshMarkers();
 }
 
+// dragging the slider
 slider.addEventListener('input', () => setYear(parseInt(slider.value, 10)));
 
-let playTimer = null;
-function stopPlay(){
-  clearInterval(playTimer);
-  playTimer = null;
-  playBtn.innerHTML = '&#9654;';
-}
-function startPlay(){
-  playBtn.innerHTML = '&#10074;&#10074;';
-  playTimer = setInterval(() => {
-    let y = parseInt(slider.value, 10) + 1;
-    if (y > MAX_YEAR) y = MIN_YEAR;
-    setYear(y);
-  }, parseInt(speedSelect.value, 10));
-}
-playBtn.addEventListener('click', () => {
-  if (playTimer) stopPlay(); else startPlay();
+// typing a year directly
+yearInput.addEventListener('change', () => {
+  const parsed = parseInt(yearInput.value, 10);
+  setYear(Number.isNaN(parsed) ? MIN_YEAR : parsed);
 });
-speedSelect.addEventListener('change', () => {
-  if (playTimer){ stopPlay(); startPlay(); }
+yearInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') yearInput.blur();
+});
+
+// step buttons
+prevBtn.addEventListener('click', () => setYear(parseInt(slider.value, 10) - 1));
+nextBtn.addEventListener('click', () => setYear(parseInt(slider.value, 10) + 1));
+
+// left/right arrow keys step the year when focus isn't in the year input
+document.addEventListener('keydown', (e) => {
+  if (document.activeElement === yearInput) return;
+  if (e.key === 'ArrowLeft') setYear(parseInt(slider.value, 10) - 1);
+  if (e.key === 'ArrowRight') setYear(parseInt(slider.value, 10) + 1);
 });
 
 /* =========================================================
