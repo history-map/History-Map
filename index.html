@@ -207,8 +207,19 @@
     input.year{ font-size:42px; width:120px;}
     .legend{ display:none; }
     .topbar{ padding:16px 16px 0 16px; flex-direction:column; }
-    .instrument-inner{ padding:0 16px 16px 16px; }
     .topic-picker select{ max-width:70vw; }
+    /* On mobile, move the year bar up directly under the topic picker
+       instead of pinning it to the bottom of the screen — that spot
+       used to sit right on top of the map's zoom controls. */
+    .instrument{
+      top: 118px;
+      bottom: auto;
+      padding-top: 0;
+      background: rgba(11,20,32,0.94);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+    .instrument-inner{ padding: 14px 16px 16px 16px; }
   }
 </style>
 </head>
