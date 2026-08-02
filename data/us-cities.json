@@ -12,6 +12,14 @@
       "desc": "Dutch colonists established a fur-trading settlement at the tip of Manhattan Island; it would be renamed New York after the English took control in 1664."
     },
     {
+      "year": 1837,
+      "lat": 29.76,
+      "lng": -95.37,
+      "title": "Houston",
+      "category": "settlement",
+      "desc": "Founded and named after Sam Houston on June 5th 1837.."
+    },
+    {
       "year": 1625,
       "lat": 40.71,
       "lng": -74.01,
