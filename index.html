@@ -278,6 +278,16 @@
      2. Add "your-file.json" to /data/manifest.json.
    No other code changes needed — the dropdown, slider range,
    and map all update automatically.
+
+   Optional per-event field: "endYear"
+     - On a standalone event (no "place"), the marker stays
+       visible for every year from "year" through "endYear"
+       instead of just its exact year.
+     - On a "place"-series entry, it makes that entry (and the
+       marker showing it) disappear once the selected year goes
+       past "endYear" — e.g. a settlement that was destroyed or
+       abandoned. Leave it out entirely and nothing changes;
+       it's fully optional and defaults to "never ends".
    ========================================================= */
 const MANIFEST_URL = 'data/manifest.json';
 
@@ -431,7 +441,13 @@ function refreshMarkers(){
   let visibleCount = 0;
 
   markers.forEach(m => {
-    const show = m._ev.year === year && activeCategories.has(m._ev.category);
+    const ev = m._ev;
+    // optional "endYear": if present, the event stays visible from its
+    // year through endYear (inclusive); if absent, behaves as before
+    // and only shows in its exact year.
+    const hasEnd = ev.endYear !== undefined && ev.endYear !== null;
+    const show = (hasEnd ? (year >= ev.year && year <= ev.endYear) : (year === ev.year))
+      && activeCategories.has(ev.category);
     const onMap = map.hasLayer(m);
     if (show && !onMap) m.addTo(map);
     if (!show && onMap) map.removeLayer(m);
@@ -445,7 +461,14 @@ function refreshMarkers(){
     for (const ev of events){
       if (ev.year <= year) current = ev; else break;
     }
-    const show = current !== null && activeCategories.has(current.category);
+    let show = current !== null && activeCategories.has(current.category);
+    // optional "endYear" on the current entry: once the selected year
+    // passes it, the marker disappears (e.g. a settlement destroyed or
+    // abandoned). A later series entry, if any, would already have
+    // taken over as "current" before this check runs.
+    if (show && current.endYear !== undefined && current.endYear !== null && year > current.endYear){
+      show = false;
+    }
     const onMap = map.hasLayer(m);
     if (show){
       if (m._lastShownYear !== current.year){
