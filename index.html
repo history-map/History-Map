@@ -280,14 +280,22 @@
    and map all update automatically.
 
    Optional per-event field: "endYear"
-     - On a standalone event (no "place"), the marker stays
-       visible for every year from "year" through "endYear"
-       instead of just its exact year.
-     - On a "place"-series entry, it makes that entry (and the
-       marker showing it) disappear once the selected year goes
-       past "endYear" — e.g. a settlement that was destroyed or
-       abandoned. Leave it out entirely and nothing changes;
-       it's fully optional and defaults to "never ends".
+     - Cuts a visible span short. On a "settlement" event (standalone
+       or in a "place" series), the marker normally stays forever
+       once its year is reached; adding "endYear" makes it disappear
+       after that year instead (e.g. a settlement destroyed or
+       abandoned). On any other category, adding "endYear" makes a
+       normally one-off event stay visible for that year range
+       instead of just a single year.
+     - Leave it out entirely and nothing changes — it's fully
+       optional and only affects an event once you add it.
+
+   Persistence rule of thumb:
+     - category "settlement" → visible from its year onward forever,
+       whether standalone or part of a "place" series (unless capped
+       by "endYear").
+     - any other category → visible only in its exact year (unless
+       given an "endYear" range).
    ========================================================= */
 const MANIFEST_URL = 'data/manifest.json';
 
@@ -442,12 +450,21 @@ function refreshMarkers(){
 
   markers.forEach(m => {
     const ev = m._ev;
-    // optional "endYear": if present, the event stays visible from its
-    // year through endYear (inclusive); if absent, behaves as before
-    // and only shows in its exact year.
     const hasEnd = ev.endYear !== undefined && ev.endYear !== null;
-    const show = (hasEnd ? (year >= ev.year && year <= ev.endYear) : (year === ev.year))
-      && activeCategories.has(ev.category);
+    // "settlement" events represent an ongoing place, so once founded
+    // they stay on the map by default — no "place" grouping required
+    // for that alone. Other categories are one-off moments in time
+    // unless they're given their own endYear range.
+    const persistsByDefault = ev.category === 'settlement';
+    let show;
+    if (hasEnd){
+      show = year >= ev.year && year <= ev.endYear;
+    } else if (persistsByDefault){
+      show = year >= ev.year;
+    } else {
+      show = year === ev.year;
+    }
+    show = show && activeCategories.has(ev.category);
     const onMap = map.hasLayer(m);
     if (show && !onMap) m.addTo(map);
     if (!show && onMap) map.removeLayer(m);
