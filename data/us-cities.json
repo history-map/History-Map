@@ -1,8 +1,65 @@
 {
   "topic": "US Cities & Settlements",
   "range": "1624–1900",
-  "description": "American settlements take root and stay on the map from their founding year onward, growing into major cities as reflected in periodic census counts.",
+  "description": "American settlements — from Spanish missions and French trading posts to Puritan towns, boomtowns, and ghost towns — take root and stay on the map from their founding year onward, growing (or vanishing) as reflected in census counts and, where a place was abandoned, its end date.",
   "events": [
+    {
+      "year": 1564,
+      "lat": 30.39,
+      "lng": -81.55,
+      "title": "Fort Caroline founded",
+      "category": "settlement",
+      "place": "fort-caroline",
+      "desc": "French Huguenot colonists built this fort near the mouth of the St. Johns River in Florida, France's first colonial foothold in North America. Spanish forces from the newly founded St. Augustine attacked and destroyed the fort, killing most of the colonists and ending France's claim to Florida.",
+      "endYear": 1565
+    },
+    {
+      "year": 1607,
+      "lat": 43.75,
+      "lng": -69.8,
+      "title": "Popham Colony founded",
+      "category": "settlement",
+      "place": "popham-colony",
+      "desc": "English colonists built Fort St. George at the mouth of the Kennebec River the same year as Jamestown, an early rival attempt at permanent settlement. A brutal winter, the death of colony leader George Popham, and dwindling supplies led the surviving colonists to abandon the fort and sail home after little more than a year.",
+      "endYear": 1608
+    },
+    {
+      "year": 1615,
+      "lat": 36.41,
+      "lng": -105.57,
+      "title": "Taos founded",
+      "category": "settlement",
+      "place": "taos",
+      "desc": "Spanish colonists settled near the centuries-old Taos Pueblo, forming one of the earliest European communities in the Southwest."
+    },
+    {
+      "year": 1622,
+      "lat": 42.22,
+      "lng": -70.94,
+      "title": "Wessagusset Colony founded",
+      "category": "settlement",
+      "place": "wessagusset-colony",
+      "desc": "A short-lived trading colony on Massachusetts Bay, founded by London merchants; poor planning and conflict with the Pilgrims led to its collapse within a year. The colony fell apart amid starvation and conflict; survivors scattered or joined Plymouth Colony.",
+      "endYear": 1623
+    },
+    {
+      "year": 1623,
+      "lat": 43.2,
+      "lng": -70.87,
+      "title": "Dover founded",
+      "category": "settlement",
+      "place": "dover",
+      "desc": "A fishing and trading outpost on the Cocheco River, generally considered the oldest permanent European settlement in New Hampshire."
+    },
+    {
+      "year": 1624,
+      "lat": 42.65,
+      "lng": -73.75,
+      "title": "Albany (Fort Orange) founded",
+      "category": "settlement",
+      "place": "albany-fort-orange",
+      "desc": "Dutch fur traders built Fort Orange on the upper Hudson River; it grew into Albany, one of the oldest continuously chartered cities in the original colonies."
+    },
     {
       "year": 1624,
       "lat": 40.71,
@@ -11,6 +68,33 @@
       "category": "settlement",
       "place": "new-york-city",
       "desc": "Dutch colonists established a fur-trading settlement at the tip of Manhattan Island; it would be renamed New York after the English took control in 1664."
+    },
+    {
+      "year": 1626,
+      "lat": 42.52,
+      "lng": -70.9,
+      "title": "Salem founded",
+      "category": "settlement",
+      "place": "salem",
+      "desc": "Founded by English fishermen and Puritan settlers, Salem later became infamous for the 1692 witch trials."
+    },
+    {
+      "year": 1629,
+      "lat": 42.38,
+      "lng": -71.06,
+      "title": "Charlestown founded",
+      "category": "settlement",
+      "place": "charlestown",
+      "desc": "Settled just before Boston across the harbor, Charlestown was later annexed by its larger neighbor."
+    },
+    {
+      "year": 1629,
+      "lat": 42.47,
+      "lng": -70.95,
+      "title": "Lynn founded",
+      "category": "settlement",
+      "place": "lynn",
+      "desc": "An early Massachusetts Bay Colony settlement that became a center of shoemaking."
     },
     {
       "year": 1630,
@@ -22,6 +106,232 @@
       "desc": "Puritan colonists settled the Shawmut Peninsula, founding what became the political and commercial center of New England."
     },
     {
+      "year": 1630,
+      "lat": 42.37,
+      "lng": -71.11,
+      "title": "Cambridge founded",
+      "category": "settlement",
+      "place": "cambridge",
+      "desc": "Founded as \"Newtowne,\" it was renamed Cambridge and became home to Harvard College in 1636."
+    },
+    {
+      "year": 1630,
+      "lat": 42.3,
+      "lng": -71.06,
+      "title": "Dorchester founded",
+      "category": "settlement",
+      "place": "dorchester",
+      "desc": "One of the original Massachusetts Bay Colony towns, later absorbed into the city of Boston."
+    },
+    {
+      "year": 1630,
+      "lat": 43.07,
+      "lng": -70.76,
+      "title": "Portsmouth founded",
+      "category": "settlement",
+      "place": "portsmouth",
+      "desc": "Settled as Strawbery Banke, a fishing and trading post that grew into New Hampshire's colonial capital."
+    },
+    {
+      "year": 1630,
+      "lat": 42.31,
+      "lng": -71.09,
+      "title": "Roxbury founded",
+      "category": "settlement",
+      "place": "roxbury",
+      "desc": "Founded alongside Boston, Roxbury remained a separate town for over two centuries before annexation."
+    },
+    {
+      "year": 1630,
+      "lat": 42.37,
+      "lng": -71.18,
+      "title": "Watertown founded",
+      "category": "settlement",
+      "place": "watertown",
+      "desc": "Founded by Puritan settlers on the Charles River as part of the Massachusetts Bay Colony's first wave of towns."
+    },
+    {
+      "year": 1631,
+      "lat": 43.16,
+      "lng": -70.65,
+      "title": "York founded",
+      "category": "settlement",
+      "place": "york",
+      "desc": "Generally considered the oldest incorporated town in Maine."
+    },
+    {
+      "year": 1633,
+      "lat": 42.68,
+      "lng": -70.84,
+      "title": "Ipswich founded",
+      "category": "settlement",
+      "place": "ipswich",
+      "desc": "An early Massachusetts Bay Colony town known for its shipbuilding and lace-making traditions."
+    },
+    {
+      "year": 1634,
+      "lat": 38.19,
+      "lng": -76.43,
+      "title": "St. Mary's City founded",
+      "category": "settlement",
+      "place": "st-mary-s-city",
+      "desc": "Founded by English Catholic settlers, St. Mary's City served as Maryland's first colonial capital. The colony's capital moved to Annapolis, and St. Mary's City rapidly declined into little more than farmland; it is now preserved as an archaeological site.",
+      "endYear": 1695
+    },
+    {
+      "year": 1634,
+      "lat": 41.71,
+      "lng": -72.65,
+      "title": "Wethersfield founded",
+      "category": "settlement",
+      "place": "wethersfield",
+      "desc": "One of the three original Connecticut River towns, predating the colony of Connecticut itself."
+    },
+    {
+      "year": 1635,
+      "lat": 42.46,
+      "lng": -71.35,
+      "title": "Concord founded",
+      "category": "settlement",
+      "place": "concord",
+      "desc": "The first inland town in the Massachusetts Bay Colony, later the site of the war's opening battle in 1775."
+    },
+    {
+      "year": 1635,
+      "lat": 41.76,
+      "lng": -72.69,
+      "title": "Hartford founded",
+      "category": "settlement",
+      "place": "hartford",
+      "desc": "Founded by Puritan settlers under Thomas Hooker, Hartford became the capital of the Connecticut Colony."
+    },
+    {
+      "year": 1635,
+      "lat": 41.29,
+      "lng": -72.38,
+      "title": "Old Saybrook founded",
+      "category": "settlement",
+      "place": "old-saybrook",
+      "desc": "Founded at the mouth of the Connecticut River as the seat of the short-lived Saybrook Colony."
+    },
+    {
+      "year": 1636,
+      "lat": 41.82,
+      "lng": -71.41,
+      "title": "Providence founded",
+      "category": "settlement",
+      "place": "providence",
+      "desc": "Founded by Roger Williams after his banishment from Massachusetts Bay for advocating religious tolerance."
+    },
+    {
+      "year": 1636,
+      "lat": 43.5,
+      "lng": -70.44,
+      "title": "Saco founded",
+      "category": "settlement",
+      "place": "saco",
+      "desc": "An early fishing and lumber settlement on the Maine coast."
+    },
+    {
+      "year": 1636,
+      "lat": 42.1,
+      "lng": -72.59,
+      "title": "Springfield founded",
+      "category": "settlement",
+      "place": "springfield",
+      "desc": "Founded on the Connecticut River, Springfield remained part of Massachusetts rather than joining Connecticut."
+    },
+    {
+      "year": 1638,
+      "lat": 42.98,
+      "lng": -70.95,
+      "title": "Exeter founded",
+      "category": "settlement",
+      "place": "exeter",
+      "desc": "Founded by Reverend John Wheelwright after his own banishment from Massachusetts Bay."
+    },
+    {
+      "year": 1638,
+      "lat": 41.31,
+      "lng": -72.93,
+      "title": "New Haven founded",
+      "category": "settlement",
+      "place": "new-haven",
+      "desc": "Founded by Puritan merchants as the center of the separate New Haven Colony, later absorbed into Connecticut."
+    },
+    {
+      "year": 1638,
+      "lat": 41.6,
+      "lng": -71.25,
+      "title": "Portsmouth (Rhode Island) founded",
+      "category": "settlement",
+      "place": "portsmouth-rhode-island",
+      "desc": "Founded by Anne Hutchinson and other religious dissenters exiled from Massachusetts Bay."
+    },
+    {
+      "year": 1639,
+      "lat": 41.29,
+      "lng": -72.68,
+      "title": "Guilford founded",
+      "category": "settlement",
+      "place": "guilford",
+      "desc": "A Puritan farming town founded along the Connecticut shoreline."
+    },
+    {
+      "year": 1639,
+      "lat": 41.49,
+      "lng": -71.31,
+      "title": "Newport founded",
+      "category": "settlement",
+      "place": "newport",
+      "desc": "Founded on Aquidneck Island, Newport grew into a major colonial seaport and center of religious tolerance."
+    },
+    {
+      "year": 1643,
+      "lat": 41.7,
+      "lng": -71.43,
+      "title": "Warwick founded",
+      "category": "settlement",
+      "place": "warwick",
+      "desc": "Founded by Samuel Gorton, another dissenter who fell out with the Massachusetts Bay authorities."
+    },
+    {
+      "year": 1649,
+      "lat": 38.98,
+      "lng": -76.49,
+      "title": "Annapolis founded",
+      "category": "settlement",
+      "place": "annapolis",
+      "desc": "Founded by Puritan settlers as Providence, it was renamed Annapolis in 1694 when it became Maryland's new capital."
+    },
+    {
+      "year": 1651,
+      "lat": 39.66,
+      "lng": -75.57,
+      "title": "New Castle founded",
+      "category": "settlement",
+      "place": "new-castle",
+      "desc": "Founded by the Dutch as New Amstel on the Delaware River, later taken by the English and renamed."
+    },
+    {
+      "year": 1661,
+      "lat": 42.81,
+      "lng": -73.94,
+      "title": "Schenectady founded",
+      "category": "settlement",
+      "place": "schenectady",
+      "desc": "Founded by Dutch colonists on the Mohawk River as a farming and trading settlement west of Albany."
+    },
+    {
+      "year": 1666,
+      "lat": 40.74,
+      "lng": -74.17,
+      "title": "Newark founded",
+      "category": "settlement",
+      "place": "newark",
+      "desc": "Founded by Puritan settlers from Connecticut on the banks of the Passaic River."
+    },
+    {
       "year": 1670,
       "lat": 32.78,
       "lng": -79.93,
@@ -31,6 +341,24 @@
       "desc": "English colonists established Charles Town, which grew into the wealthiest and most cosmopolitan city in the colonial South."
     },
     {
+      "year": 1673,
+      "lat": 43.05,
+      "lng": -91.14,
+      "title": "Prairie du Chien founded",
+      "category": "settlement",
+      "place": "prairie-du-chien",
+      "desc": "A French fur-trading post at the confluence of the Wisconsin and Mississippi Rivers, among the oldest European settlements in the upper Midwest."
+    },
+    {
+      "year": 1677,
+      "lat": 40.07,
+      "lng": -74.86,
+      "title": "Burlington founded",
+      "category": "settlement",
+      "place": "burlington",
+      "desc": "Founded by English Quakers, Burlington briefly served as capital of West Jersey."
+    },
+    {
       "year": 1682,
       "lat": 39.95,
       "lng": -75.16,
@@ -38,6 +366,160 @@
       "category": "settlement",
       "place": "philadelphia",
       "desc": "William Penn laid out the city on land granted by the English crown, planning it on a grid as a haven for religious dissenters."
+    },
+    {
+      "year": 1682,
+      "lat": 31.67,
+      "lng": -106.31,
+      "title": "Ysleta (El Paso) founded",
+      "category": "settlement",
+      "place": "ysleta-el-paso",
+      "desc": "Spanish refugees from the Pueblo Revolt founded this mission settlement, considered the oldest continuous European settlement in Texas."
+    },
+    {
+      "year": 1683,
+      "lat": 40.03,
+      "lng": -75.19,
+      "title": "Germantown founded",
+      "category": "settlement",
+      "place": "germantown",
+      "desc": "Founded by German and Dutch Quaker and Mennonite immigrants, it became one of the first German settlements in America."
+    },
+    {
+      "year": 1683,
+      "lat": 40.51,
+      "lng": -74.27,
+      "title": "Perth Amboy founded",
+      "category": "settlement",
+      "place": "perth-amboy",
+      "desc": "Founded as the capital of the colony of East Jersey at a strategic point on Raritan Bay."
+    },
+    {
+      "year": 1698,
+      "lat": 30.42,
+      "lng": -87.22,
+      "title": "Pensacola founded",
+      "category": "settlement",
+      "place": "pensacola",
+      "desc": "Spain established a presidio on the Gulf Coast to guard against French expansion, making it one of the oldest European settlements in the continental United States."
+    },
+    {
+      "year": 1699,
+      "lat": 30.4,
+      "lng": -88.89,
+      "title": "Biloxi founded",
+      "category": "settlement",
+      "place": "biloxi",
+      "desc": "Founded by French colonists, Biloxi served as the first capital of French Louisiana."
+    },
+    {
+      "year": 1699,
+      "lat": 38.57,
+      "lng": -90.19,
+      "title": "Cahokia founded",
+      "category": "settlement",
+      "place": "cahokia",
+      "desc": "Founded by French missionaries across the Mississippi from present-day St. Louis, Cahokia is considered the oldest permanent European settlement in Illinois."
+    },
+    {
+      "year": 1701,
+      "lat": 42.33,
+      "lng": -83.05,
+      "title": "Detroit (Fort Pontchartrain) founded",
+      "category": "settlement",
+      "place": "detroit-fort-pontchartrain",
+      "desc": "Founded by French officer Antoine de la Mothe Cadillac as a fort controlling the strait between Lakes Erie and Huron."
+    },
+    {
+      "year": 1702,
+      "lat": 30.69,
+      "lng": -88.04,
+      "title": "Mobile founded",
+      "category": "settlement",
+      "place": "mobile",
+      "desc": "Founded by French colonists as the first capital of French Louisiana before the seat moved to Biloxi and later New Orleans."
+    },
+    {
+      "year": 1703,
+      "lat": 37.92,
+      "lng": -89.92,
+      "title": "Kaskaskia founded",
+      "category": "settlement",
+      "place": "kaskaskia",
+      "desc": "A French mission and trading town that later served as the first capital of the Illinois Territory and then the state of Illinois. Catastrophic Mississippi River flooding shifted the river's channel and destroyed most of the town, leaving only a tiny remnant on an island cut off from the Illinois mainland.",
+      "endYear": 1881
+    },
+    {
+      "year": 1705,
+      "lat": 35.47,
+      "lng": -76.81,
+      "title": "Bath founded",
+      "category": "settlement",
+      "place": "bath",
+      "desc": "North Carolina's oldest incorporated town, founded as a port on the Pamlico River."
+    },
+    {
+      "year": 1706,
+      "lat": 35.08,
+      "lng": -106.65,
+      "title": "Albuquerque founded",
+      "category": "settlement",
+      "place": "albuquerque",
+      "desc": "Founded by Spanish colonists and named for a Spanish duke, Albuquerque grew along the Rio Grande as a farming and trading town."
+    },
+    {
+      "year": 1710,
+      "lat": 35.11,
+      "lng": -77.04,
+      "title": "New Bern founded",
+      "category": "settlement",
+      "place": "new-bern",
+      "desc": "Founded by Swiss and German Palatine settlers and named for the Swiss city of Bern."
+    },
+    {
+      "year": 1711,
+      "lat": 32.43,
+      "lng": -80.67,
+      "title": "Beaufort (South Carolina) founded",
+      "category": "settlement",
+      "place": "beaufort-south-carolina",
+      "desc": "Founded as a port town on the South Carolina Lowcountry coast, later prospering from indigo and rice."
+    },
+    {
+      "year": 1712,
+      "lat": 36.06,
+      "lng": -76.61,
+      "title": "Edenton founded",
+      "category": "settlement",
+      "place": "edenton",
+      "desc": "An early North Carolina port town that briefly served as the colony's capital."
+    },
+    {
+      "year": 1716,
+      "lat": 31.6,
+      "lng": -94.66,
+      "title": "Nacogdoches founded",
+      "category": "settlement",
+      "place": "nacogdoches",
+      "desc": "Founded around a Spanish mission among the Caddo people in East Texas."
+    },
+    {
+      "year": 1716,
+      "lat": 31.56,
+      "lng": -91.4,
+      "title": "Natchez (Fort Rosalie) founded",
+      "category": "settlement",
+      "place": "natchez-fort-rosalie",
+      "desc": "French colonists built Fort Rosalie above the Mississippi River on land belonging to the Natchez people."
+    },
+    {
+      "year": 1717,
+      "lat": 44.51,
+      "lng": -88.02,
+      "title": "Green Bay (La Baye) founded",
+      "category": "settlement",
+      "place": "green-bay-la-baye",
+      "desc": "Built around an earlier French mission and trading post, Green Bay is considered Wisconsin's oldest settlement."
     },
     {
       "year": 1718,
@@ -58,6 +540,15 @@
       "desc": "Spanish colonists established a mission and presidio along the San Antonio River; the settlement grew into the largest town in Spanish and later Mexican Texas."
     },
     {
+      "year": 1719,
+      "lat": 40.22,
+      "lng": -74.76,
+      "title": "Trenton founded",
+      "category": "settlement",
+      "place": "trenton",
+      "desc": "Founded by Quaker settlers at the falls of the Delaware River, later the site of Washington's pivotal 1776 crossing."
+    },
+    {
       "year": 1729,
       "lat": 39.29,
       "lng": -76.61,
@@ -65,6 +556,69 @@
       "category": "settlement",
       "place": "baltimore",
       "desc": "The town was chartered on the Patapsco River as a tobacco-shipping port for the Maryland colony."
+    },
+    {
+      "year": 1729,
+      "lat": 33.38,
+      "lng": -79.29,
+      "title": "Georgetown (South Carolina) founded",
+      "category": "settlement",
+      "place": "georgetown-south-carolina",
+      "desc": "Founded at the mouth of the Pee Dee and Waccamaw Rivers, it grew into a major rice-exporting port."
+    },
+    {
+      "year": 1732,
+      "lat": 38.68,
+      "lng": -87.53,
+      "title": "Vincennes founded",
+      "category": "settlement",
+      "place": "vincennes",
+      "desc": "Founded as a French fur-trading post on the Wabash River, later the site of a decisive Revolutionary War campaign."
+    },
+    {
+      "year": 1733,
+      "lat": 32.08,
+      "lng": -81.09,
+      "title": "Savannah founded",
+      "category": "settlement",
+      "place": "savannah",
+      "desc": "Founded by James Oglethorpe as the first settlement in the colony of Georgia, laid out on a distinctive grid of public squares."
+    },
+    {
+      "year": 1735,
+      "lat": 37.98,
+      "lng": -90.04,
+      "title": "Ste. Genevieve founded",
+      "category": "settlement",
+      "place": "ste-genevieve",
+      "desc": "Founded by French colonists, it is considered the oldest permanent European settlement in present-day Missouri."
+    },
+    {
+      "year": 1739,
+      "lat": 34.23,
+      "lng": -77.94,
+      "title": "Wilmington (North Carolina) founded",
+      "category": "settlement",
+      "place": "wilmington-north-carolina",
+      "desc": "Founded on the Cape Fear River, Wilmington grew into North Carolina's leading colonial port."
+    },
+    {
+      "year": 1749,
+      "lat": 28.66,
+      "lng": -97.39,
+      "title": "Goliad founded",
+      "category": "settlement",
+      "place": "goliad",
+      "desc": "Founded as a Spanish mission and presidio in South Texas, later the site of a notorious massacre during the Texas Revolution."
+    },
+    {
+      "year": 1755,
+      "lat": 27.51,
+      "lng": -99.51,
+      "title": "Laredo founded",
+      "category": "settlement",
+      "place": "laredo",
+      "desc": "Founded by Spanish colonists on the north bank of the Rio Grande as a ranching settlement."
     },
     {
       "year": 1764,
@@ -76,6 +630,69 @@
       "desc": "French fur traders established a trading post on the Mississippi, which later became a key jumping-off point for westward expeditions and migration."
     },
     {
+      "year": 1769,
+      "lat": 32.76,
+      "lng": -117.19,
+      "title": "Mission San Diego de Alcalá founded",
+      "category": "settlement",
+      "place": "mission-san-diego-de-alcal",
+      "desc": "Founded by Father Junípero Serra, this was the first of the 21 Spanish missions in Alta California, the seed of present-day San Diego."
+    },
+    {
+      "year": 1770,
+      "lat": 36.55,
+      "lng": -121.92,
+      "title": "Mission San Carlos Borromeo (Carmel) founded",
+      "category": "settlement",
+      "place": "mission-san-carlos-borromeo-carmel",
+      "desc": "Serra's second mission became his headquarters and burial place, and grew into present-day Carmel-by-the-Sea."
+    },
+    {
+      "year": 1771,
+      "lat": 35.98,
+      "lng": -121.28,
+      "title": "Mission San Antonio de Padua founded",
+      "category": "settlement",
+      "place": "mission-san-antonio-de-padua",
+      "desc": "Established in a remote inland valley, this mission became a center of irrigation farming and craft production."
+    },
+    {
+      "year": 1771,
+      "lat": 34.1,
+      "lng": -118.11,
+      "title": "Mission San Gabriel Arcángel founded",
+      "category": "settlement",
+      "place": "mission-san-gabriel-arc-ngel",
+      "desc": "One of the most productive missions, its farmland and orchards helped supply the settlement that became Los Angeles."
+    },
+    {
+      "year": 1772,
+      "lat": 35.28,
+      "lng": -120.66,
+      "title": "Mission San Luis Obispo de Tolosa founded",
+      "category": "settlement",
+      "place": "mission-san-luis-obispo-de-tolosa",
+      "desc": "Founded partway along the mission chain, it gave its name to the city that grew around it."
+    },
+    {
+      "year": 1776,
+      "lat": 37.76,
+      "lng": -122.43,
+      "title": "Mission San Francisco de Asís (Dolores) founded",
+      "category": "settlement",
+      "place": "mission-san-francisco-de-as-s-dolores",
+      "desc": "Founded the same year as American independence, this mission became the nucleus of San Francisco."
+    },
+    {
+      "year": 1776,
+      "lat": 33.5,
+      "lng": -117.66,
+      "title": "Mission San Juan Capistrano founded",
+      "category": "settlement",
+      "place": "mission-san-juan-capistrano",
+      "desc": "Known for its swallows and its Great Stone Church, later damaged by an 1812 earthquake."
+    },
+    {
       "year": 1776,
       "lat": 37.77,
       "lng": -122.42,
@@ -85,6 +702,15 @@
       "desc": "Spain established a fort and mission on the San Francisco Bay, the seed of a small settlement that stayed modest for seven decades."
     },
     {
+      "year": 1777,
+      "lat": 37.35,
+      "lng": -121.94,
+      "title": "Mission Santa Clara de Asís founded",
+      "category": "settlement",
+      "place": "mission-santa-clara-de-as-s",
+      "desc": "Repeatedly relocated due to flooding, it eventually became the site of Santa Clara University."
+    },
+    {
       "year": 1781,
       "lat": 34.05,
       "lng": -118.24,
@@ -92,6 +718,33 @@
       "category": "settlement",
       "place": "los-angeles",
       "desc": "Spanish colonial authorities established a small farming pueblo, decades before it became part of Mexico and, later, the United States."
+    },
+    {
+      "year": 1782,
+      "lat": 34.28,
+      "lng": -119.3,
+      "title": "Mission San Buenaventura founded",
+      "category": "settlement",
+      "place": "mission-san-buenaventura",
+      "desc": "The last mission founded by Junípero Serra himself, on the coast that became Ventura."
+    },
+    {
+      "year": 1786,
+      "lat": 34.43,
+      "lng": -119.71,
+      "title": "Mission Santa Barbara founded",
+      "category": "settlement",
+      "place": "mission-santa-barbara",
+      "desc": "Became an important center of Franciscan activity and gave its name to the city and channel."
+    },
+    {
+      "year": 1787,
+      "lat": 34.67,
+      "lng": -120.46,
+      "title": "Mission La Purísima Concepción founded",
+      "category": "settlement",
+      "place": "mission-la-pur-sima-concepci-n",
+      "desc": "One of the most heavily restored missions today, near present-day Lompoc."
     },
     {
       "year": 1788,
@@ -148,6 +801,78 @@
       "desc": "Philadelphia was the new nation's second-largest city and, for a time, its capital."
     },
     {
+      "year": 1791,
+      "lat": 36.42,
+      "lng": -121.33,
+      "title": "Mission Nuestra Señora de la Soledad founded",
+      "category": "settlement",
+      "place": "mission-nuestra-se-ora-de-la-soledad",
+      "desc": "A remote and often struggling mission in the Salinas Valley."
+    },
+    {
+      "year": 1791,
+      "lat": 36.97,
+      "lng": -122.03,
+      "title": "Mission Santa Cruz founded",
+      "category": "settlement",
+      "place": "mission-santa-cruz",
+      "desc": "Founded across the San Lorenzo River from a Spanish pueblo, forming the twin settlements that became Santa Cruz."
+    },
+    {
+      "year": 1797,
+      "lat": 34.28,
+      "lng": -118.47,
+      "title": "Mission San Fernando Rey de España founded",
+      "category": "settlement",
+      "place": "mission-san-fernando-rey-de-espa-a",
+      "desc": "Founded in the San Fernando Valley, now part of Los Angeles."
+    },
+    {
+      "year": 1797,
+      "lat": 37.53,
+      "lng": -121.93,
+      "title": "Mission San José founded",
+      "category": "settlement",
+      "place": "mission-san-jos",
+      "desc": "Once one of the most prosperous missions, its lands later became part of Fremont, California."
+    },
+    {
+      "year": 1797,
+      "lat": 36.85,
+      "lng": -121.54,
+      "title": "Mission San Juan Bautista founded",
+      "category": "settlement",
+      "place": "mission-san-juan-bautista",
+      "desc": "Built beside the San Andreas Fault, its large church still overlooks the original town plaza."
+    },
+    {
+      "year": 1797,
+      "lat": 35.75,
+      "lng": -120.7,
+      "title": "Mission San Miguel Arcángel founded",
+      "category": "settlement",
+      "place": "mission-san-miguel-arc-ngel",
+      "desc": "Known for its well-preserved original interior murals and decoration."
+    },
+    {
+      "year": 1798,
+      "lat": 33.23,
+      "lng": -117.32,
+      "title": "Mission San Luis Rey de Francia founded",
+      "category": "settlement",
+      "place": "mission-san-luis-rey-de-francia",
+      "desc": "The largest and most prosperous of the missions, earning it the nickname \"King of the Missions.\""
+    },
+    {
+      "year": 1804,
+      "lat": 34.6,
+      "lng": -120.14,
+      "title": "Mission Santa Inés founded",
+      "category": "settlement",
+      "place": "mission-santa-in-s",
+      "desc": "Founded to ease crowding at neighboring missions, near present-day Solvang."
+    },
+    {
       "year": 1810,
       "lat": 29.95,
       "lng": -90.07,
@@ -164,6 +889,34 @@
       "category": "settlement",
       "place": "st-louis",
       "desc": "St. Louis remained a small frontier river town in the years just after the Louisiana Purchase."
+    },
+    {
+      "year": 1817,
+      "lat": 37.97,
+      "lng": -122.53,
+      "title": "Mission San Rafael Arcángel founded",
+      "category": "settlement",
+      "place": "mission-san-rafael-arc-ngel",
+      "desc": "Originally built as a hospital outpost for ailing mission residents, north of San Francisco Bay."
+    },
+    {
+      "year": 1819,
+      "lat": 32.31,
+      "lng": -87.1,
+      "title": "Cahawba founded",
+      "category": "settlement",
+      "place": "cahawba",
+      "desc": "Founded at the confluence of the Cahaba and Alabama Rivers, Cahawba served as Alabama's first state capital. The capital moved to Tuscaloosa in 1826, and repeated flooding and the loss of its county seat status in 1866 led to the town's gradual abandonment by the turn of the century.",
+      "endYear": 1900
+    },
+    {
+      "year": 1823,
+      "lat": 38.29,
+      "lng": -122.46,
+      "title": "Mission San Francisco Solano founded",
+      "category": "settlement",
+      "place": "mission-san-francisco-solano",
+      "desc": "The last and northernmost of the California missions, founded at Sonoma under Mexican rule."
     },
     {
       "year": 1830,
@@ -328,6 +1081,35 @@
       "desc": "Steamboat trade on the Mississippi and Missouri Rivers fueled explosive growth in just a few decades."
     },
     {
+      "year": 1859,
+      "lat": 38.21,
+      "lng": -119.01,
+      "title": "Bodie founded",
+      "category": "settlement",
+      "place": "bodie",
+      "desc": "A gold-mining camp in the California high desert that boomed to roughly 10,000 residents at its 1870s peak. Dwindling ore, harsh winters, and the diversion of resources to World War II led to the closure of the last mine and the town's abandonment; it is now preserved in a state of \"arrested decay.\"",
+      "endYear": 1942
+    },
+    {
+      "year": 1859,
+      "lat": 37.13,
+      "lng": -113.05,
+      "title": "Grafton founded",
+      "category": "settlement",
+      "place": "grafton",
+      "desc": "Mormon pioneers founded this farming settlement on the Virgin River in southern Utah. Repeated flooding, isolation, and the difficulty of farming the land led the last residents to leave by the mid-1940s.",
+      "endYear": 1944
+    },
+    {
+      "year": 1859,
+      "lat": 39.31,
+      "lng": -119.65,
+      "title": "Virginia City founded",
+      "category": "settlement",
+      "place": "virginia-city",
+      "desc": "Founded on Nevada's Comstock Lode, one of the richest silver strikes in American history, drawing tens of thousands of prospectors."
+    },
+    {
       "year": 1860,
       "lat": 30.27,
       "lng": -97.74,
@@ -346,6 +1128,36 @@
       "desc": "Heavy German immigration helped San Antonio become the largest town in Texas, ahead of the Gulf port of Galveston."
     },
     {
+      "year": 1862,
+      "lat": 45.16,
+      "lng": -112.99,
+      "title": "Bannack founded",
+      "category": "settlement",
+      "place": "bannack",
+      "desc": "A gold-rush boomtown that briefly served as Montana's first territorial capital. Remote location and exhausted gold deposits led to a long, slow decline; the last residents left around 1970, and Bannack is now a preserved state park.",
+      "endYear": 1970
+    },
+    {
+      "year": 1866,
+      "lat": 40.8,
+      "lng": -76.34,
+      "title": "Centralia (Pennsylvania) founded",
+      "category": "settlement",
+      "place": "centralia-pennsylvania",
+      "desc": "A Pennsylvania coal town built above rich anthracite deposits. An underground mine fire, accidentally ignited in 1962, spread beneath the town and made it uninhabitable; most residents were relocated and the borough was effectively abandoned, though the fire still burns today.",
+      "endYear": 1992
+    },
+    {
+      "year": 1867,
+      "lat": 42.48,
+      "lng": -108.8,
+      "title": "South Pass City founded",
+      "category": "settlement",
+      "place": "south-pass-city",
+      "desc": "A Wyoming gold-rush town that briefly boomed to several thousand residents and hosted an early vote for women's suffrage in the territory. The gold played out quickly, and the town's population dwindled to nearly nothing by mid-century; it is now a preserved historic site.",
+      "endYear": 1949
+    },
+    {
       "year": 1870,
       "lat": 41.88,
       "lng": -87.63,
@@ -353,6 +1165,24 @@
       "category": "settlement",
       "place": "chicago",
       "desc": "Chicago's population had grown roughly tenfold in twenty years, driven by railroads, stockyards, and manufacturing."
+    },
+    {
+      "year": 1876,
+      "lat": 44.38,
+      "lng": -103.73,
+      "title": "Deadwood founded",
+      "category": "settlement",
+      "place": "deadwood",
+      "desc": "A lawless Black Hills gold-rush camp that grew rapidly after gold was discovered on nearby Deadwood Gulch."
+    },
+    {
+      "year": 1879,
+      "lat": 31.71,
+      "lng": -110.07,
+      "title": "Tombstone founded",
+      "category": "settlement",
+      "place": "tombstone",
+      "desc": "A silver-mining boomtown in the Arizona desert, later famous for the 1881 gunfight near the O.K. Corral."
     },
     {
       "year": 1880,
@@ -371,6 +1201,16 @@
       "category": "settlement",
       "place": "san-antonio",
       "desc": "The arrival of the Galveston, Harrisburg and San Antonio Railway in 1877 opened a new era of growth for the city."
+    },
+    {
+      "year": 1881,
+      "lat": 34.94,
+      "lng": -116.87,
+      "title": "Calico founded",
+      "category": "settlement",
+      "place": "calico",
+      "desc": "A silver-mining camp in the Mojave Desert that grew to support around 500 mines at its peak. A collapse in silver prices in the 1890s emptied the town within about fifteen years of its founding.",
+      "endYear": 1907
     },
     {
       "year": 1900,
@@ -488,6 +1328,26 @@
       "category": "settlement",
       "place": "st-louis",
       "desc": "St. Louis had grown into the fourth-largest city in the country ahead of hosting the 1904 World's Fair."
+    },
+    {
+      "year": 1903,
+      "lat": 61.49,
+      "lng": -142.9,
+      "title": "Kennecott founded",
+      "category": "settlement",
+      "place": "kennecott",
+      "desc": "A remote Alaskan copper-mining town built around one of the richest copper deposits ever found. The mine was depleted and the company shut down operations, and the town was abandoned almost overnight.",
+      "endYear": 1938
+    },
+    {
+      "year": 1905,
+      "lat": 36.9,
+      "lng": -116.83,
+      "title": "Rhyolite founded",
+      "category": "settlement",
+      "place": "rhyolite",
+      "desc": "A Nevada gold-rush town that grew from tents to a modern city of several thousand in just a few years. The gold deposits played out almost as quickly as they were found, and the town was essentially deserted within about fifteen years.",
+      "endYear": 1920
     }
   ]
 }
