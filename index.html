@@ -82,6 +82,12 @@
   .topic-picker select:hover{ border-color:var(--brass); }
   .topic-picker select:focus{ outline:none; border-color:var(--brass); }
 
+  .legend-stack{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    pointer-events:auto;
+  }
   .legend{
     pointer-events:auto;
     background:rgba(11,20,32,0.82);
@@ -236,7 +242,10 @@
       <select id="topicSelect"><option value="all">Loading topics…</option></select>
     </div>
   </div>
-  <div class="legend" id="legend"></div>
+  <div class="legend-stack">
+    <div class="legend" id="territoryLegend" style="display:none;"></div>
+    <div class="legend" id="legend"></div>
+  </div>
 </div>
 
 <div class="instrument">
@@ -301,6 +310,7 @@ const MANIFEST_URL = 'data/manifest.json';
 
 let TOPICS = [];          // [{ id, topic, range, description, events }]
 let currentEvents = [];   // events currently shown (one topic, or merged "All")
+let currentTerritories = []; // territory polygons for the current topic
 let currentTopicId = null;
 
 async function loadTopics(){
@@ -327,6 +337,7 @@ async function loadTopics(){
         range: json.range || '',
         description: json.description || '',
         events: Array.isArray(json.events) ? json.events : [],
+        territories: Array.isArray(json.territories) ? json.territories : [],
       };
     } catch (err) {
       console.error('Could not load data/' + filename + ':', err);
@@ -442,6 +453,91 @@ function buildMarkers(){
     marker._series = events; // sorted ascending by year
     seriesMarkers.push(marker);
   });
+}
+
+/* =========================================================
+   TERRITORIES — colored regions showing who controlled what
+   ---------------------------------------------------------
+   A topic file can optionally include a top-level "territories"
+   array alongside "events":
+
+   "territories": [
+     {
+       "power": "British",              // label + legend grouping
+       "color": "#4a6fa5",              // fill/outline color
+       "year": 1750,                    // becomes visible starting this year
+       "endYear": 1763,                 // optional — disappears after this year
+       "coordinates": [[[lng,lat], [lng,lat], ...]]   // one polygon ring
+     }
+   ]
+
+   Multiple entries can share the same "power" (e.g. a colonial
+   power's territory drawn as several separate blobs, or the same
+   region redrawn at several snapshot years as borders shift).
+   Rendered as translucent filled polygons beneath the point
+   markers, visible whenever year >= "year" and
+   (no endYear or year <= endYear) — same rule as settlement
+   persistence for point events.
+   ========================================================= */
+let territoryLayers = [];
+
+function buildTerritories(){
+  territoryLayers.forEach(t => map.removeLayer(t));
+  territoryLayers = [];
+
+  currentTerritories.forEach(t => {
+    const layer = L.polygon(
+      t.coordinates.map(ring => ring.map(([lng, lat]) => [lat, lng])),
+      {
+        color: t.color,
+        weight: 1.5,
+        opacity: 0.85,
+        fillColor: t.color,
+        fillOpacity: 0.32,
+      }
+    );
+    const rangeLabel = t.endYear ? `${t.year}–${t.endYear}` : `${t.year} onward`;
+    layer.bindPopup(`
+      <div class="pop-cat" style="color:${t.color}">Territory</div>
+      <div class="pop-year">${rangeLabel}</div>
+      <div class="pop-title">${t.power}</div>
+    `);
+    layer._territory = t;
+    territoryLayers.push(layer);
+  });
+}
+
+function refreshTerritories(year){
+  territoryLayers.forEach(layer => {
+    const t = layer._territory;
+    const show = year >= t.year && (t.endYear === undefined || t.endYear === null || year <= t.endYear);
+    const onMap = map.hasLayer(layer);
+    if (show && !onMap){
+      layer.addTo(map);
+      layer.bringToBack();
+    }
+    if (!show && onMap) map.removeLayer(layer);
+  });
+}
+
+function buildTerritoryLegend(){
+  const el = document.getElementById('territoryLegend');
+  if (!el) return;
+  const seen = new Map(); // power -> color
+  currentTerritories.forEach(t => { if (!seen.has(t.power)) seen.set(t.power, t.color); });
+  if (seen.size === 0){
+    el.innerHTML = '';
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = '';
+  el.innerHTML = '<div class="legend-title">Territories</div>' +
+    [...seen.entries()].map(([power, color]) => `
+      <div class="legend-row">
+        <span class="dot" style="background:${color}"></span>
+        <span class="label">${power}</span>
+      </div>
+    `).join('');
 }
 
 function refreshMarkers(){
@@ -563,16 +659,20 @@ function selectTopic(id){
     currentEvents = TOPICS.flatMap(t =>
       t.events.map(e => ({ ...e, _topicLabel: t.topic }))
     );
+    currentTerritories = TOPICS.flatMap(t => t.territories);
     eyebrowEl.textContent = TOPICS.length
       ? `All topics — ${TOPICS.length} datasets combined`
       : 'An interactive gazetteer';
   } else {
     const t = TOPICS.find(t => t.id === id);
     currentEvents = t ? t.events.map(e => ({ ...e })) : [];
+    currentTerritories = t ? t.territories : [];
     eyebrowEl.textContent = t ? (t.description || t.range || 'An interactive gazetteer') : 'An interactive gazetteer';
   }
 
-  const years = currentEvents.map(e => e.year);
+  const eventYears = currentEvents.map(e => e.year);
+  const territoryYears = currentTerritories.flatMap(t => t.endYear ? [t.year, t.endYear] : [t.year]);
+  const years = eventYears.concat(territoryYears);
   MIN_YEAR = years.length ? Math.min(...years) : 1000;
   MAX_YEAR = years.length ? Math.max(...years) : 2025;
   if (MIN_YEAR === MAX_YEAR) MAX_YEAR = MIN_YEAR + 1; // avoid a zero-width slider
@@ -581,12 +681,14 @@ function selectTopic(id){
   slider.max = MAX_YEAR;
   buildTicks();
   buildMarkers();
+  buildTerritories();
+  buildTerritoryLegend();
 
   // keep the current year if it still falls in range, else jump to the topic's first event
   const existing = parseInt(yearInput.value, 10);
   const startYear = (!Number.isNaN(existing) && existing >= MIN_YEAR && existing <= MAX_YEAR)
     ? existing
-    : (years.length ? Math.min(...years) : MIN_YEAR);
+    : (eventYears.length ? Math.min(...eventYears) : MIN_YEAR);
   setYear(startYear);
 }
 
@@ -628,6 +730,7 @@ function setYear(y){
   prevBtn.disabled = (y <= MIN_YEAR);
   nextBtn.disabled = (y >= MAX_YEAR);
   refreshMarkers();
+  refreshTerritories(y);
 }
 
 slider.addEventListener('input', () => setYear(parseInt(slider.value, 10)));
