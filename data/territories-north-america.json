@@ -1,0 +1,46 @@
+{
+  "topic": "Territorial Control of North America",
+  "range": "1750–1803",
+  "description": "Simplified, schematic outlines of British, French, Spanish, and (from 1783) United States claims in North America at four snapshot years: the eve of the French and Indian War, the 1763 Treaty of Paris, American independence in 1783, and the Louisiana Purchase in 1803. Colonial borders were often vague or contested at the time — these shapes trace major rivers, mountain ranges, and treaty lines to give a general sense of scale and change, not a precise cadastral survey.",
+  "events": [
+    { "year": 1750, "lat": 46.81, "lng": -71.21, "title": "Rival empires in North America, c. 1750", "category": "politics", "desc": "By the mid-1700s, three European powers claimed vast, loosely defined territories across North America: France along the St. Lawrence and Mississippi valleys, Britain along the Atlantic seaboard, and Spain across Florida and the northern reaches of New Spain." },
+    { "year": 1763, "lat": 46.81, "lng": -71.21, "title": "Treaty of Paris redraws the map", "category": "politics", "desc": "Ending the Seven Years' War (called the French and Indian War in America), France ceded nearly all its North American territory: Canada and land east of the Mississippi to Britain, and Louisiana west of the Mississippi to Spain. France's mainland North American empire effectively ended." },
+    { "year": 1783, "lat": 38.9, "lng": -77.03, "title": "American independence recognized", "category": "politics", "desc": "The Treaty of Paris ending the Revolutionary War recognized the United States, which gained British-held land east of the Mississippi and south of the Great Lakes. Spain, having regained Florida from Britain, held Florida, Louisiana, and New Spain." },
+    { "year": 1803, "lat": 29.95, "lng": -90.07, "title": "The Louisiana Purchase", "category": "politics", "desc": "The United States purchased the vast Louisiana Territory from France (which had briefly reacquired it from Spain in 1800), roughly doubling the country's size and pushing its western claim to the Rocky Mountains." }
+  ],
+  "territories": [
+    { "power": "French", "color": "#7d5ba6", "year": 1750, "endYear": 1762,
+      "coordinates": [[[-71,49],[-95,50],[-104,49],[-104,34],[-93,29.5],[-89,29],[-85,31],[-83,35],[-79,42],[-75,45],[-71,49]]] },
+    { "power": "British", "color": "#4a6fa5", "year": 1750, "endYear": 1762,
+      "coordinates": [[[-67,45],[-70,43],[-71,42],[-74,40],[-76,39],[-77,37],[-81,32],[-81,31],[-83,33],[-82,36],[-80,39],[-78,41],[-75,44],[-67,45]]] },
+    { "power": "British", "color": "#4a6fa5", "year": 1750, "endYear": 1762,
+      "coordinates": [[[-95,50],[-110,60],[-90,68],[-70,65],[-75,55],[-80,51],[-95,50]]] },
+    { "power": "Spanish", "color": "#c9843f", "year": 1750, "endYear": 1782,
+      "coordinates": [[[-87,31],[-85,30.5],[-82,30],[-80,25],[-81,27],[-82,29],[-85,30],[-87,31]]] },
+    { "power": "Spanish", "color": "#c9843f", "year": 1750, "endYear": 1802,
+      "coordinates": [[[-124,42],[-124,32],[-114,23],[-97,16],[-97,26],[-94,29],[-104,34],[-109,42],[-120,42],[-124,42]]] },
+
+    { "power": "British", "color": "#4a6fa5", "year": 1763, "endYear": 1782,
+      "coordinates": [[[-95,50],[-90,49],[-91,44],[-90,38],[-91,33],[-89.5,29],[-85,30],[-82,25],[-80,27],[-81,32],[-75,38],[-70,42],[-67,45],[-71,49],[-80,51],[-95,50]]] },
+    { "power": "Spanish", "color": "#c9843f", "year": 1763, "endYear": 1802,
+      "coordinates": [[[-91,49],[-104,49],[-104,34],[-97,29.5],[-89.5,29],[-90,38],[-91,44],[-91,49]]] },
+
+    { "power": "United States", "color": "#4a9d6f", "year": 1783, "endYear": 1802,
+      "coordinates": [[[-83,45],[-90,47],[-90,38],[-91,33],[-89.5,31],[-85,31],[-81,31],[-81,32],[-75,38],[-70,42],[-67,45],[-70,45],[-79,45],[-83,45]]] },
+    { "power": "British", "color": "#4a6fa5", "year": 1783, "endYear": 1802,
+      "coordinates": [[[-95,50],[-110,60],[-90,68],[-70,65],[-65,50],[-70,45],[-79,45],[-83,45],[-90,47],[-95,50]]] },
+    { "power": "Spanish", "color": "#c9843f", "year": 1783, "endYear": 1802,
+      "coordinates": [[[-91,31],[-89.5,30.5],[-85,30.5],[-82,30],[-80,25],[-81,27],[-82,29],[-85,30.5],[-89,30.5],[-91,31]]] },
+
+    { "power": "United States", "color": "#4a9d6f", "year": 1803,
+      "coordinates": [[[-83,45],[-90,47],[-90,38],[-91,33],[-89.5,31],[-85,31],[-81,31],[-81,32],[-75,38],[-70,42],[-67,45],[-70,45],[-79,45],[-83,45]]] },
+    { "power": "United States", "color": "#4a9d6f", "year": 1803,
+      "coordinates": [[[-91,49],[-105,49],[-109,42],[-105,32],[-97,29.7],[-91,29],[-91,44],[-91,49]]] },
+    { "power": "British", "color": "#4a6fa5", "year": 1803,
+      "coordinates": [[[-95,50],[-110,60],[-90,68],[-70,65],[-65,50],[-70,45],[-79,45],[-83,45],[-90,47],[-95,50]]] },
+    { "power": "Spanish", "color": "#c9843f", "year": 1803,
+      "coordinates": [[[-91,31],[-89.5,30.5],[-85,30.5],[-82,30],[-80,25],[-81,27],[-82,29],[-85,30.5],[-89,30.5],[-91,31]]] },
+    { "power": "Spanish", "color": "#c9843f", "year": 1803,
+      "coordinates": [[[-124,42],[-124,32],[-114,23],[-97,16],[-97,26],[-105,32],[-109,42],[-120,42],[-124,42]]] }
+  ]
+}
